@@ -19,6 +19,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     FIRApp.configure()
     
+    if FIRAuth.auth()?.currentUser != nil {
+      let mainStoryboard = UIStoryboard(name: Constants.Storyboards.main, bundle: nil)
+      let tabBarViewController = mainStoryboard.instantiateViewController(withIdentifier: Constants.Controllers.tabBarController)
+      window?.rootViewController = tabBarViewController
+    }
+    
     return true
   }
 

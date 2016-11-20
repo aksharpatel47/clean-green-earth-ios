@@ -15,4 +15,12 @@ struct Constants {
     static let successfulSignup = "successfulSignup"
     static let updateName = "updateName"
   }
+  
+  struct Storyboards {
+    static let main = "Main"
+  }
+  
+  struct Controllers {
+    static let tabBarController = "TabBarController"
+  }
 }
