@@ -6,6 +6,6 @@ target 'CleanGreenEarth' do
   use_frameworks!
 
   # Pods for CleanGreenEarth
-  pod 'Firebase/Core'
-  pod 'Firebase/Auth'
+  pod 'Firebase/Core', '3.4.4'
+  pod 'Firebase/Auth', '3.0.6'
 end

@@ -23,7 +23,7 @@
 		66BDFE95D92554B3B4D61A48 /* Pods-CleanGreenEarth.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CleanGreenEarth.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CleanGreenEarth/Pods-CleanGreenEarth.debug.xcconfig"; sourceTree = "<group>"; };
 		D496262E1DDFE83800113527 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		D49626301DE214E000113527 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		D49626331DE215D200113527 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		D49626331DE215D200113527 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		D4E974D71DDFE754002DCA7B /* CleanGreenEarth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CleanGreenEarth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4E974DA1DDFE754002DCA7B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4E974DC1DDFE754002DCA7B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
