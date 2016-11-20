@@ -13,6 +13,7 @@
 		D496262F1DDFE83800113527 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D496262E1DDFE83800113527 /* .gitignore */; };
 		D49626311DE214E000113527 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D49626301DE214E000113527 /* GoogleService-Info.plist */; };
 		D49626341DE215D200113527 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = D49626331DE215D200113527 /* Podfile */; };
+		D4D19C9F1DE2369300707A2C /* UpdateNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D19C9E1DE2369300707A2C /* UpdateNameViewController.swift */; };
 		D4E974DB1DDFE754002DCA7B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E974DA1DDFE754002DCA7B /* AppDelegate.swift */; };
 		D4E974DD1DDFE754002DCA7B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E974DC1DDFE754002DCA7B /* LoginViewController.swift */; };
 		D4E974E01DDFE754002DCA7B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4E974DE1DDFE754002DCA7B /* Main.storyboard */; };
@@ -28,6 +29,7 @@
 		D496262E1DDFE83800113527 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		D49626301DE214E000113527 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D49626331DE215D200113527 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		D4D19C9E1DE2369300707A2C /* UpdateNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateNameViewController.swift; sourceTree = "<group>"; };
 		D4E974D71DDFE754002DCA7B /* CleanGreenEarth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CleanGreenEarth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4E974DA1DDFE754002DCA7B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4E974DC1DDFE754002DCA7B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 			children = (
 				D4E974DA1DDFE754002DCA7B /* AppDelegate.swift */,
 				D4E974DC1DDFE754002DCA7B /* LoginViewController.swift */,
+				D4D19C9E1DE2369300707A2C /* UpdateNameViewController.swift */,
 				D4E974DE1DDFE754002DCA7B /* Main.storyboard */,
 				D43D1CC71DE22B72008F292E /* SignupViewController.swift */,
 				D4E974E11DDFE754002DCA7B /* Assets.xcassets */,
@@ -233,6 +236,7 @@
 				D43D1CC81DE22B72008F292E /* SignupViewController.swift in Sources */,
 				D4E974DD1DDFE754002DCA7B /* LoginViewController.swift in Sources */,
 				D4E974DB1DDFE754002DCA7B /* AppDelegate.swift in Sources */,
+				D4D19C9F1DE2369300707A2C /* UpdateNameViewController.swift in Sources */,
 				D43D1CCA1DE22D65008F292E /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -13,5 +13,6 @@ struct Constants {
     static let signup = "signup"
     static let successfulLogin = "successfulLogin"
     static let successfulSignup = "successfulSignup"
+    static let updateName = "updateName"
   }
 }

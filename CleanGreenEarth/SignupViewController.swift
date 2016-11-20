@@ -36,7 +36,7 @@ class SignupViewController: UIViewController {
         return
       }
       
-      self.performSegue(withIdentifier: Constants.Segues.successfulSignup, sender: nil)
+      self.performSegue(withIdentifier: Constants.Segues.updateName, sender: nil)
     }
   }
 }

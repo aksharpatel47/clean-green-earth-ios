@@ -145,12 +145,89 @@
                         <outlet property="emailTextField" destination="ndt-6B-Cmy" id="gIC-Tc-ESr"/>
                         <outlet property="passwordTextField" destination="IMt-sa-RBx" id="JME-Qi-hgZ"/>
                         <outlet property="retypePasswordTextField" destination="cms-3q-E1C" id="WKE-mK-cTv"/>
-                        <segue destination="ywS-Z8-als" kind="showDetail" identifier="successfulSignup" id="pK3-82-Iwf"/>
+                        <segue destination="lkC-Ym-byJ" kind="show" identifier="updateName" id="6yy-Mv-wmw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1ZF-I6-czu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1909.5999999999999" y="551.87406296851577"/>
+        </scene>
+        <!--Enter Your Name-->
+        <scene sceneID="7E2-mV-JZO">
+            <objects>
+                <tableViewController id="lkC-Ym-byJ" customClass="UpdateNameViewController" customModule="CleanGreenEarth" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="1" id="9Iq-Sb-Ne8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <sections>
+                            <tableViewSection id="wN5-Oi-xZZ">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="TXu-N1-qZV">
+                                        <rect key="frame" x="0.0" y="35" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TXu-N1-qZV" id="trZ-M8-Plf">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Your Name Here..." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nf5-XW-czI">
+                                                    <rect key="frame" x="8" y="4" width="359" height="35.5"/>
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no"/>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="Nf5-XW-czI" secondAttribute="trailing" constant="8" id="T5U-4g-xO9"/>
+                                                <constraint firstItem="Nf5-XW-czI" firstAttribute="leading" secondItem="trZ-M8-Plf" secondAttribute="leading" constant="8" id="nvN-hL-Ht0"/>
+                                                <constraint firstItem="Nf5-XW-czI" firstAttribute="top" secondItem="trZ-M8-Plf" secondAttribute="top" constant="4" id="oPg-rH-Xqd"/>
+                                                <constraint firstAttribute="bottom" secondItem="Nf5-XW-czI" secondAttribute="bottom" constant="4" id="wbe-fH-oah"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection id="zYa-ek-Afc">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="oBl-bB-tyI">
+                                        <rect key="frame" x="0.0" y="98" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oBl-bB-tyI" id="Kul-Sx-8c1">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mvk-Dz-y3q">
+                                                    <rect key="frame" x="168.5" y="5.5" width="37" height="33"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <state key="normal" title="Save"/>
+                                                    <connections>
+                                                        <action selector="updateName:" destination="lkC-Ym-byJ" eventType="touchUpInside" id="s3H-86-Tri"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="mvk-Dz-y3q" firstAttribute="centerX" secondItem="Kul-Sx-8c1" secondAttribute="centerX" id="aSh-TS-296"/>
+                                                <constraint firstItem="mvk-Dz-y3q" firstAttribute="centerY" secondItem="Kul-Sx-8c1" secondAttribute="centerY" id="iGV-Ym-q0U"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="lkC-Ym-byJ" id="RNv-Uw-sOM"/>
+                            <outlet property="delegate" destination="lkC-Ym-byJ" id="xJh-6i-m2m"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Enter Your Name" id="nVY-T8-r9f"/>
+                    <connections>
+                        <outlet property="nameTextField" destination="Nf5-XW-czI" id="YMy-Xt-y3I"/>
+                        <segue destination="ywS-Z8-als" kind="showDetail" identifier="successfulSignup" id="SCk-hA-KTm"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mwO-CO-ims" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2830" y="727"/>
         </scene>
         <!--Events-->
         <scene sceneID="Cle-b4-AxS">
@@ -305,6 +382,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="wah-g8-ket"/>
+        <segue reference="SCk-hA-KTm"/>
     </inferredMetricsTieBreakers>
 </document>
