@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		001CD6187F1488FEF111A928 /* Pods_CleanGreenEarth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 332D5AB180CE9D9BD440F876 /* Pods_CleanGreenEarth.framework */; };
 		D496262F1DDFE83800113527 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D496262E1DDFE83800113527 /* .gitignore */; };
 		D49626311DE214E000113527 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D49626301DE214E000113527 /* GoogleService-Info.plist */; };
 		D49626341DE215D200113527 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = D49626331DE215D200113527 /* Podfile */; };
@@ -18,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		332D5AB180CE9D9BD440F876 /* Pods_CleanGreenEarth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CleanGreenEarth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		66BDFE95D92554B3B4D61A48 /* Pods-CleanGreenEarth.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CleanGreenEarth.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CleanGreenEarth/Pods-CleanGreenEarth.debug.xcconfig"; sourceTree = "<group>"; };
 		D496262E1DDFE83800113527 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		D49626301DE214E000113527 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D49626331DE215D200113527 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
@@ -28,6 +31,7 @@
 		D4E974E11DDFE754002DCA7B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D4E974E41DDFE754002DCA7B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D4E974E61DDFE754002DCA7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F512E20F67AC26A937D2BEF3 /* Pods-CleanGreenEarth.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CleanGreenEarth.release.xcconfig"; path = "Pods/Target Support Files/Pods-CleanGreenEarth/Pods-CleanGreenEarth.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,12 +39,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				001CD6187F1488FEF111A928 /* Pods_CleanGreenEarth.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5A79B4011F200DBB23EBF086 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				66BDFE95D92554B3B4D61A48 /* Pods-CleanGreenEarth.debug.xcconfig */,
+				F512E20F67AC26A937D2BEF3 /* Pods-CleanGreenEarth.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		B084D18F5E33507206B252A2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				332D5AB180CE9D9BD440F876 /* Pods_CleanGreenEarth.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D4E974CE1DDFE754002DCA7B = {
 			isa = PBXGroup;
 			children = (
@@ -49,6 +71,8 @@
 				D49626331DE215D200113527 /* Podfile */,
 				D4E974D91DDFE754002DCA7B /* CleanGreenEarth */,
 				D4E974D81DDFE754002DCA7B /* Products */,
+				5A79B4011F200DBB23EBF086 /* Pods */,
+				B084D18F5E33507206B252A2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -80,9 +104,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D4E974E91DDFE754002DCA7B /* Build configuration list for PBXNativeTarget "CleanGreenEarth" */;
 			buildPhases = (
+				455F58BA4F5C1DFF2668A730 /* [CP] Check Pods Manifest.lock */,
 				D4E974D31DDFE754002DCA7B /* Sources */,
 				D4E974D41DDFE754002DCA7B /* Frameworks */,
 				D4E974D51DDFE754002DCA7B /* Resources */,
+				1D13A3E6EB6D2CBD5AD957A0 /* [CP] Embed Pods Frameworks */,
+				FFB0EC2E007C0F7F7A3D17EE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -143,6 +170,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1D13A3E6EB6D2CBD5AD957A0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CleanGreenEarth/Pods-CleanGreenEarth-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		455F58BA4F5C1DFF2668A730 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		FFB0EC2E007C0F7F7A3D17EE /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CleanGreenEarth/Pods-CleanGreenEarth-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D4E974D31DDFE754002DCA7B /* Sources */ = {
@@ -271,6 +346,7 @@
 		};
 		D4E974EA1DDFE754002DCA7B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66BDFE95D92554B3B4D61A48 /* Pods-CleanGreenEarth.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = GAR9GU6C4G;
@@ -285,6 +361,7 @@
 		};
 		D4E974EB1DDFE754002DCA7B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F512E20F67AC26A937D2BEF3 /* Pods-CleanGreenEarth.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = GAR9GU6C4G;
