@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>705612492969-roqlr4ib07td7or48eqekd9ckt0m51rn.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.705612492969-roqlr4ib07td7or48eqekd9ckt0m51rn</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBAS0H1jlLTxYpKpaJFGj6irwrdQJbFldQ</string>
+	<key>GCM_SENDER_ID</key>
+	<string>705612492969</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>tech.ekantik.CleanGreenEarth</string>
+	<key>PROJECT_ID</key>
+	<string>clean-green-earth-62497</string>
+	<key>STORAGE_BUCKET</key>
+	<string>clean-green-earth-62497.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:705612492969:ios:d5251ade17bddeb2</string>
+	<key>DATABASE_URL</key>
+	<string>https://clean-green-earth-62497.firebaseio.com</string>
+</dict>
+</plist>
