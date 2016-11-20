@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class SignupViewController: UIViewController {
   
@@ -19,6 +20,23 @@ class SignupViewController: UIViewController {
   }
   
   @IBAction func signup(_ sender: AnyObject) {
-    performSegue(withIdentifier: Constants.Segues.successfulSignup, sender: nil)
+    
+    guard let email = emailTextField.text,
+      let password = passwordTextField.text,
+      let retypePassword = retypePasswordTextField.text,
+      !email.isEmpty, !password.isEmpty, !retypePassword.isEmpty,
+      password == retypePassword else {
+        return
+    }
+    
+    FIRAuth.auth()?.createUser(withEmail: email, password: password) {
+      user, error in
+      
+      guard user != nil, error == nil else {
+        return
+      }
+      
+      self.performSegue(withIdentifier: Constants.Segues.successfulSignup, sender: nil)
+    }
   }
 }
