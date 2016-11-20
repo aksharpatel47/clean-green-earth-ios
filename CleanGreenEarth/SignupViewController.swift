@@ -19,6 +19,6 @@ class SignupViewController: UIViewController {
   }
   
   @IBAction func signup(_ sender: AnyObject) {
-    
+    performSegue(withIdentifier: Constants.Segues.successfulSignup, sender: nil)
   }
 }

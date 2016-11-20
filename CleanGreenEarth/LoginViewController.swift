@@ -22,11 +22,11 @@ class LoginViewController: UIViewController {
   }
 
   @IBAction func login(_ sender: AnyObject) {
-    
+    performSegue(withIdentifier: Constants.Segues.successfulLogin, sender: nil)
   }
   
   @IBAction func signup(_ sender: AnyObject) {
-    
+    performSegue(withIdentifier: Constants.Segues.signup, sender: nil)
   }
 }
 
