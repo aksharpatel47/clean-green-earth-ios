@@ -36,7 +36,19 @@ class SignupViewController: UIViewController {
         return
       }
       
-      self.performSegue(withIdentifier: Constants.Segues.updateName, sender: nil)
+      CGEClient.shared.signup() {
+        data, error in
+        
+        guard let data = data, error == nil else {
+          return
+        }
+        
+        print(data)
+        
+        DispatchQueue.main.async {
+          self.performSegue(withIdentifier: Constants.Segues.updateName, sender: nil)
+        }
+      }
     }
   }
 }

@@ -37,7 +37,19 @@ class UpdateNameViewController: UITableViewController {
         return
       }
       
-      self.performSegue(withIdentifier: Constants.Segues.successfulSignup, sender: nil)
+      CGEClient.shared.updateName(name: name) {
+        data, error in
+        
+        guard let data = data, error == nil else {
+          return
+        }
+        
+        print(data)
+        
+        DispatchQueue.main.async {
+          self.performSegue(withIdentifier: Constants.Segues.successfulSignup, sender: nil)
+        }
+      }
     })
   }
 }

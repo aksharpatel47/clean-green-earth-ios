@@ -14,6 +14,10 @@
 		D49626311DE214E000113527 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D49626301DE214E000113527 /* GoogleService-Info.plist */; };
 		D49626341DE215D200113527 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = D49626331DE215D200113527 /* Podfile */; };
 		D4D19C9F1DE2369300707A2C /* UpdateNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D19C9E1DE2369300707A2C /* UpdateNameViewController.swift */; };
+		D4D19CA31DE247A600707A2C /* CGEClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D19CA21DE247A600707A2C /* CGEClient.swift */; };
+		D4D19CA51DE247F600707A2C /* CGEClient+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D19CA41DE247F600707A2C /* CGEClient+Constants.swift */; };
+		D4D19CA71DE2486600707A2C /* CGEClient+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D19CA61DE2486600707A2C /* CGEClient+Helpers.swift */; };
+		D4D19CA91DE24D3200707A2C /* CGEClient+Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D19CA81DE24D3200707A2C /* CGEClient+Authentication.swift */; };
 		D4E974DB1DDFE754002DCA7B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E974DA1DDFE754002DCA7B /* AppDelegate.swift */; };
 		D4E974DD1DDFE754002DCA7B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E974DC1DDFE754002DCA7B /* LoginViewController.swift */; };
 		D4E974E01DDFE754002DCA7B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4E974DE1DDFE754002DCA7B /* Main.storyboard */; };
@@ -30,6 +34,10 @@
 		D49626301DE214E000113527 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D49626331DE215D200113527 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		D4D19C9E1DE2369300707A2C /* UpdateNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateNameViewController.swift; sourceTree = "<group>"; };
+		D4D19CA21DE247A600707A2C /* CGEClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGEClient.swift; sourceTree = "<group>"; };
+		D4D19CA41DE247F600707A2C /* CGEClient+Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGEClient+Constants.swift"; sourceTree = "<group>"; };
+		D4D19CA61DE2486600707A2C /* CGEClient+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGEClient+Helpers.swift"; sourceTree = "<group>"; };
+		D4D19CA81DE24D3200707A2C /* CGEClient+Authentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGEClient+Authentication.swift"; sourceTree = "<group>"; };
 		D4E974D71DDFE754002DCA7B /* CleanGreenEarth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CleanGreenEarth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4E974DA1DDFE754002DCA7B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4E974DC1DDFE754002DCA7B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -69,6 +77,25 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D4D19CA01DE2478900707A2C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D4D19CA11DE2479500707A2C /* CGEClient */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		D4D19CA11DE2479500707A2C /* CGEClient */ = {
+			isa = PBXGroup;
+			children = (
+				D4D19CA21DE247A600707A2C /* CGEClient.swift */,
+				D4D19CA81DE24D3200707A2C /* CGEClient+Authentication.swift */,
+				D4D19CA61DE2486600707A2C /* CGEClient+Helpers.swift */,
+				D4D19CA41DE247F600707A2C /* CGEClient+Constants.swift */,
+			);
+			name = CGEClient;
+			sourceTree = "<group>";
+		};
 		D4E974CE1DDFE754002DCA7B = {
 			isa = PBXGroup;
 			children = (
@@ -102,6 +129,7 @@
 				D4E974E31DDFE754002DCA7B /* LaunchScreen.storyboard */,
 				D4E974E61DDFE754002DCA7B /* Info.plist */,
 				D43D1CC91DE22D65008F292E /* Constants.swift */,
+				D4D19CA01DE2478900707A2C /* Models */,
 			);
 			path = CleanGreenEarth;
 			sourceTree = "<group>";
@@ -233,11 +261,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4D19CA31DE247A600707A2C /* CGEClient.swift in Sources */,
 				D43D1CC81DE22B72008F292E /* SignupViewController.swift in Sources */,
 				D4E974DD1DDFE754002DCA7B /* LoginViewController.swift in Sources */,
 				D4E974DB1DDFE754002DCA7B /* AppDelegate.swift in Sources */,
+				D4D19CA91DE24D3200707A2C /* CGEClient+Authentication.swift in Sources */,
 				D4D19C9F1DE2369300707A2C /* UpdateNameViewController.swift in Sources */,
+				D4D19CA71DE2486600707A2C /* CGEClient+Helpers.swift in Sources */,
 				D43D1CCA1DE22D65008F292E /* Constants.swift in Sources */,
+				D4D19CA51DE247F600707A2C /* CGEClient+Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
