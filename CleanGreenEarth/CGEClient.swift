@@ -28,7 +28,7 @@ final class CGEClient {
         return
       }
       
-      request.addValue("Bearer \(token)", forHTTPHeaderField: "Authentication")
+      request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
       
       if let data = data {
         request.httpBody = try? JSONSerialization.data(withJSONObject: data)
