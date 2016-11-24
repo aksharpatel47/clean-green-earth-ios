@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		001CD6187F1488FEF111A928 /* Pods_CleanGreenEarth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 332D5AB180CE9D9BD440F876 /* Pods_CleanGreenEarth.framework */; };
 		656A5BD51DE6AC8A00647BD0 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656A5BD41DE6AC8A00647BD0 /* ProfileTableViewController.swift */; };
+		656A5BD91DE6F10C00647BD0 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 656A5BD71DE6F10C00647BD0 /* DataModel.xcdatamodeld */; };
 		65B493971DE57B7800317ACB /* SearchEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B493961DE57B7800317ACB /* SearchEventsViewController.swift */; };
 		65B4939D1DE5848B00317ACB /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65B4939C1DE5848B00317ACB /* MapKit.framework */; };
 		D43D1CC81DE22B72008F292E /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43D1CC71DE22B72008F292E /* SignupViewController.swift */; };
@@ -31,6 +32,7 @@
 /* Begin PBXFileReference section */
 		332D5AB180CE9D9BD440F876 /* Pods_CleanGreenEarth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CleanGreenEarth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		656A5BD41DE6AC8A00647BD0 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
+		656A5BD81DE6F10C00647BD0 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		65B493961DE57B7800317ACB /* SearchEventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchEventsViewController.swift; sourceTree = "<group>"; };
 		65B4939C1DE5848B00317ACB /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		66BDFE95D92554B3B4D61A48 /* Pods-CleanGreenEarth.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CleanGreenEarth.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CleanGreenEarth/Pods-CleanGreenEarth.debug.xcconfig"; sourceTree = "<group>"; };
@@ -76,6 +78,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		656A5BD61DE6EE0F00647BD0 /* DataController */ = {
+			isa = PBXGroup;
+			children = (
+				656A5BD71DE6F10C00647BD0 /* DataModel.xcdatamodeld */,
+			);
+			name = DataController;
+			sourceTree = "<group>";
+		};
 		B084D18F5E33507206B252A2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -88,6 +98,7 @@
 		D4D19CA01DE2478900707A2C /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				656A5BD61DE6EE0F00647BD0 /* DataController */,
 				D4D19CA11DE2479500707A2C /* CGEClient */,
 			);
 			name = Models;
@@ -285,6 +296,7 @@
 				D4D19C9F1DE2369300707A2C /* UpdateNameViewController.swift in Sources */,
 				D4D19CA71DE2486600707A2C /* CGEClient+Helpers.swift in Sources */,
 				D43D1CCA1DE22D65008F292E /* Constants.swift in Sources */,
+				656A5BD91DE6F10C00647BD0 /* DataModel.xcdatamodeld in Sources */,
 				656A5BD51DE6AC8A00647BD0 /* ProfileTableViewController.swift in Sources */,
 				D4D19CA51DE247F600707A2C /* CGEClient+Constants.swift in Sources */,
 			);
@@ -459,6 +471,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		656A5BD71DE6F10C00647BD0 /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				656A5BD81DE6F10C00647BD0 /* DataModel.xcdatamodel */,
+			);
+			currentVersion = 656A5BD81DE6F10C00647BD0 /* DataModel.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = D4E974CF1DDFE754002DCA7B /* Project object */;
 }
