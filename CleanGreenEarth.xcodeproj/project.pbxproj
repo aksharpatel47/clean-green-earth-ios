@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		001CD6187F1488FEF111A928 /* Pods_CleanGreenEarth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 332D5AB180CE9D9BD440F876 /* Pods_CleanGreenEarth.framework */; };
+		656A5BD51DE6AC8A00647BD0 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656A5BD41DE6AC8A00647BD0 /* ProfileTableViewController.swift */; };
 		65B493971DE57B7800317ACB /* SearchEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B493961DE57B7800317ACB /* SearchEventsViewController.swift */; };
 		65B4939D1DE5848B00317ACB /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65B4939C1DE5848B00317ACB /* MapKit.framework */; };
 		D43D1CC81DE22B72008F292E /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43D1CC71DE22B72008F292E /* SignupViewController.swift */; };
@@ -29,6 +30,7 @@
 
 /* Begin PBXFileReference section */
 		332D5AB180CE9D9BD440F876 /* Pods_CleanGreenEarth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CleanGreenEarth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		656A5BD41DE6AC8A00647BD0 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		65B493961DE57B7800317ACB /* SearchEventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchEventsViewController.swift; sourceTree = "<group>"; };
 		65B4939C1DE5848B00317ACB /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		66BDFE95D92554B3B4D61A48 /* Pods-CleanGreenEarth.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CleanGreenEarth.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CleanGreenEarth/Pods-CleanGreenEarth.debug.xcconfig"; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 				D4E974E61DDFE754002DCA7B /* Info.plist */,
 				D43D1CC91DE22D65008F292E /* Constants.swift */,
 				D4D19CA01DE2478900707A2C /* Models */,
+				656A5BD41DE6AC8A00647BD0 /* ProfileTableViewController.swift */,
 			);
 			path = CleanGreenEarth;
 			sourceTree = "<group>";
@@ -282,6 +285,7 @@
 				D4D19C9F1DE2369300707A2C /* UpdateNameViewController.swift in Sources */,
 				D4D19CA71DE2486600707A2C /* CGEClient+Helpers.swift in Sources */,
 				D43D1CCA1DE22D65008F292E /* Constants.swift in Sources */,
+				656A5BD51DE6AC8A00647BD0 /* ProfileTableViewController.swift in Sources */,
 				D4D19CA51DE247F600707A2C /* CGEClient+Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
