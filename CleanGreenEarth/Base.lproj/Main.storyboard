@@ -167,7 +167,7 @@
                                         <rect key="frame" x="0.0" y="35" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TXu-N1-qZV" id="trZ-M8-Plf">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Your Name Here..." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nf5-XW-czI">
@@ -193,11 +193,11 @@
                                         <rect key="frame" x="0.0" y="98" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oBl-bB-tyI" id="Kul-Sx-8c1">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mvk-Dz-y3q">
-                                                    <rect key="frame" x="168.5" y="5.5" width="37" height="33"/>
+                                                    <rect key="frame" x="169" y="5.5" width="37" height="33"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <state key="normal" title="Save"/>
                                                     <connections>
@@ -267,10 +267,10 @@
             </objects>
             <point key="canvasLocation" x="4724" y="842.42878560719646"/>
         </scene>
-        <!--Search Locations-->
+        <!--Select Location-->
         <scene sceneID="sKz-hE-F0X">
             <objects>
-                <viewController id="5fj-dZ-wsU" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchEventsViewController" id="5fj-dZ-wsU" customClass="SearchEventsViewController" customModule="CleanGreenEarth" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hYr-o5-Jmd"/>
                         <viewControllerLayoutGuide type="bottom" id="jfA-am-dnx"/>
@@ -278,11 +278,40 @@
                     <view key="view" contentMode="scaleToFill" id="Yxn-v2-zOd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="u8W-X3-OsU">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="oaO-L9-IXo" appends="YES" id="5VV-ho-jVw"/>
+                                </connections>
+                            </mapView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="u8W-X3-OsU" firstAttribute="leading" secondItem="Yxn-v2-zOd" secondAttribute="leading" id="ZMY-pu-WS1"/>
+                            <constraint firstAttribute="trailing" secondItem="u8W-X3-OsU" secondAttribute="trailing" id="hKA-1D-XXI"/>
+                            <constraint firstItem="jfA-am-dnx" firstAttribute="top" secondItem="u8W-X3-OsU" secondAttribute="bottom" id="qhS-V4-1Gs"/>
+                            <constraint firstItem="u8W-X3-OsU" firstAttribute="top" secondItem="hYr-o5-Jmd" secondAttribute="bottom" id="xuN-oo-nq5"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Search Locations" id="1OV-N5-ZsT"/>
+                    <navigationItem key="navigationItem" title="Select Location" id="1OV-N5-ZsT">
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="eZY-bb-FN7">
+                            <connections>
+                                <action selector="searchButtonPressed:" destination="5fj-dZ-wsU" id="KAQ-JW-Utl"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="mapView" destination="u8W-X3-OsU" id="K7k-Q8-0wA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EA7-7r-gae" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="oaO-L9-IXo">
+                    <connections>
+                        <action selector="pinLocationToSearch:" destination="5fj-dZ-wsU" id="bpp-9h-LTD"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="4720.8000000000002" y="-482.60869565217394"/>
         </scene>
@@ -296,8 +325,8 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="IXi-bj-T5X" kind="relationship" relationship="viewControllers" id="K4n-9H-NKJ"/>
                         <segue destination="1HR-YL-f8L" kind="relationship" relationship="viewControllers" id="DAY-Zs-YfW"/>
+                        <segue destination="IXi-bj-T5X" kind="relationship" relationship="viewControllers" id="K4n-9H-NKJ"/>
                         <segue destination="Lfc-Sj-cyh" kind="relationship" relationship="viewControllers" id="QDT-0o-sGt"/>
                     </connections>
                 </tabBarController>

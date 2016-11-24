@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		001CD6187F1488FEF111A928 /* Pods_CleanGreenEarth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 332D5AB180CE9D9BD440F876 /* Pods_CleanGreenEarth.framework */; };
+		65B493971DE57B7800317ACB /* SearchEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B493961DE57B7800317ACB /* SearchEventsViewController.swift */; };
+		65B4939D1DE5848B00317ACB /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65B4939C1DE5848B00317ACB /* MapKit.framework */; };
 		D43D1CC81DE22B72008F292E /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43D1CC71DE22B72008F292E /* SignupViewController.swift */; };
 		D43D1CCA1DE22D65008F292E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43D1CC91DE22D65008F292E /* Constants.swift */; };
 		D496262F1DDFE83800113527 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D496262E1DDFE83800113527 /* .gitignore */; };
@@ -27,6 +29,8 @@
 
 /* Begin PBXFileReference section */
 		332D5AB180CE9D9BD440F876 /* Pods_CleanGreenEarth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CleanGreenEarth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		65B493961DE57B7800317ACB /* SearchEventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchEventsViewController.swift; sourceTree = "<group>"; };
+		65B4939C1DE5848B00317ACB /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		66BDFE95D92554B3B4D61A48 /* Pods-CleanGreenEarth.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CleanGreenEarth.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CleanGreenEarth/Pods-CleanGreenEarth.debug.xcconfig"; sourceTree = "<group>"; };
 		D43D1CC71DE22B72008F292E /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		D43D1CC91DE22D65008F292E /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -53,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65B4939D1DE5848B00317ACB /* MapKit.framework in Frameworks */,
 				001CD6187F1488FEF111A928 /* Pods_CleanGreenEarth.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -72,6 +77,7 @@
 		B084D18F5E33507206B252A2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				65B4939C1DE5848B00317ACB /* MapKit.framework */,
 				332D5AB180CE9D9BD440F876 /* Pods_CleanGreenEarth.framework */,
 			);
 			name = Frameworks;
@@ -123,6 +129,7 @@
 				D4E974DA1DDFE754002DCA7B /* AppDelegate.swift */,
 				D4E974DC1DDFE754002DCA7B /* LoginViewController.swift */,
 				D4D19C9E1DE2369300707A2C /* UpdateNameViewController.swift */,
+				65B493961DE57B7800317ACB /* SearchEventsViewController.swift */,
 				D4E974DE1DDFE754002DCA7B /* Main.storyboard */,
 				D43D1CC71DE22B72008F292E /* SignupViewController.swift */,
 				D4E974E11DDFE754002DCA7B /* Assets.xcassets */,
@@ -171,6 +178,11 @@
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = GAR9GU6C4G;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -263,6 +275,7 @@
 			files = (
 				D4D19CA31DE247A600707A2C /* CGEClient.swift in Sources */,
 				D43D1CC81DE22B72008F292E /* SignupViewController.swift in Sources */,
+				65B493971DE57B7800317ACB /* SearchEventsViewController.swift in Sources */,
 				D4E974DD1DDFE754002DCA7B /* LoginViewController.swift in Sources */,
 				D4E974DB1DDFE754002DCA7B /* AppDelegate.swift in Sources */,
 				D4D19CA91DE24D3200707A2C /* CGEClient+Authentication.swift in Sources */,
