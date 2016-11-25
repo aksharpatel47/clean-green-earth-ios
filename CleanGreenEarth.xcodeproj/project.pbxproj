@@ -11,6 +11,9 @@
 		65513D701DE7FE8D003C79DE /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65513D6F1DE7FE8D003C79DE /* Event.swift */; };
 		65513D721DE8105A003C79DE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65513D711DE8105A003C79DE /* User.swift */; };
 		65513D741DE8114F003C79DE /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65513D731DE8114F003C79DE /* DataController.swift */; };
+		65513D761DE8626A003C79DE /* CGEClient+Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65513D751DE8626A003C79DE /* CGEClient+Users.swift */; };
+		65513D781DE86278003C79DE /* CGEClient+Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65513D771DE86278003C79DE /* CGEClient+Events.swift */; };
+		65513D7A1DE86282003C79DE /* CGEClient+Attendance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65513D791DE86282003C79DE /* CGEClient+Attendance.swift */; };
 		656A5BD51DE6AC8A00647BD0 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656A5BD41DE6AC8A00647BD0 /* ProfileTableViewController.swift */; };
 		656A5BD91DE6F10C00647BD0 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 656A5BD71DE6F10C00647BD0 /* DataModel.xcdatamodeld */; };
 		65B493971DE57B7800317ACB /* SearchEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B493961DE57B7800317ACB /* SearchEventsViewController.swift */; };
@@ -37,6 +40,9 @@
 		65513D6F1DE7FE8D003C79DE /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		65513D711DE8105A003C79DE /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		65513D731DE8114F003C79DE /* DataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		65513D751DE8626A003C79DE /* CGEClient+Users.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGEClient+Users.swift"; sourceTree = "<group>"; };
+		65513D771DE86278003C79DE /* CGEClient+Events.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGEClient+Events.swift"; sourceTree = "<group>"; };
+		65513D791DE86282003C79DE /* CGEClient+Attendance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGEClient+Attendance.swift"; sourceTree = "<group>"; };
 		656A5BD41DE6AC8A00647BD0 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		656A5BD81DE6F10C00647BD0 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		65B493961DE57B7800317ACB /* SearchEventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchEventsViewController.swift; sourceTree = "<group>"; };
@@ -120,6 +126,9 @@
 				D4D19CA81DE24D3200707A2C /* CGEClient+Authentication.swift */,
 				D4D19CA61DE2486600707A2C /* CGEClient+Helpers.swift */,
 				D4D19CA41DE247F600707A2C /* CGEClient+Constants.swift */,
+				65513D751DE8626A003C79DE /* CGEClient+Users.swift */,
+				65513D771DE86278003C79DE /* CGEClient+Events.swift */,
+				65513D791DE86282003C79DE /* CGEClient+Attendance.swift */,
 			);
 			name = CGEClient;
 			sourceTree = "<group>";
@@ -301,16 +310,19 @@
 				65B493971DE57B7800317ACB /* SearchEventsViewController.swift in Sources */,
 				D4E974DD1DDFE754002DCA7B /* LoginViewController.swift in Sources */,
 				D4E974DB1DDFE754002DCA7B /* AppDelegate.swift in Sources */,
+				65513D7A1DE86282003C79DE /* CGEClient+Attendance.swift in Sources */,
 				D4D19CA91DE24D3200707A2C /* CGEClient+Authentication.swift in Sources */,
 				65513D721DE8105A003C79DE /* User.swift in Sources */,
 				D4D19C9F1DE2369300707A2C /* UpdateNameViewController.swift in Sources */,
 				D4D19CA71DE2486600707A2C /* CGEClient+Helpers.swift in Sources */,
 				D43D1CCA1DE22D65008F292E /* Constants.swift in Sources */,
 				65513D741DE8114F003C79DE /* DataController.swift in Sources */,
+				65513D761DE8626A003C79DE /* CGEClient+Users.swift in Sources */,
 				656A5BD91DE6F10C00647BD0 /* DataModel.xcdatamodeld in Sources */,
 				656A5BD51DE6AC8A00647BD0 /* ProfileTableViewController.swift in Sources */,
 				D4D19CA51DE247F600707A2C /* CGEClient+Constants.swift in Sources */,
 				65513D701DE7FE8D003C79DE /* Event.swift in Sources */,
+				65513D781DE86278003C79DE /* CGEClient+Events.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

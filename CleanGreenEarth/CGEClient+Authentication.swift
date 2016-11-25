@@ -12,12 +12,4 @@ extension CGEClient {
   func signup(completionHandler: @escaping ((Any?, Error?) -> Void)) {
     request(method: .POST, path: Paths.users, queryString: nil, jsonBody: nil, completionHandler: completionHandler)
   }
-  
-  func updateName(name: String, completionHandler: @escaping ((Any?, Error?) -> Void)) {
-    let payload = [
-      "name": name
-    ]
-    
-    request(method: .PATCH, path: Paths.users, queryString: nil, jsonBody: payload, completionHandler: completionHandler)
-  }
 }
