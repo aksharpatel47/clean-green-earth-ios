@@ -10,10 +10,15 @@ import UIKit
 import Firebase
 
 class ProfileTableViewController: UITableViewController {
+  
+  // MARK: Properties
+  var appDelegate = UIApplication.shared.delegate as! AppDelegate
 
   // MARK: Outlets
   
   @IBOutlet weak var userNameLabel: UILabel!
+  @IBOutlet weak var emailLabel: UILabel!
+  @IBOutlet weak var verificationStatusLabel: UILabel!
   
   // MARK: Lifecycle Methods
   
@@ -21,6 +26,15 @@ class ProfileTableViewController: UITableViewController {
     super.viewDidLoad()
     
     userNameLabel.text = FIRAuth.auth()?.currentUser?.displayName
+    emailLabel.text = FIRAuth.auth()?.currentUser?.email
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    
+    if let emailVerificationStatus = FIRAuth.auth()?.currentUser?.isEmailVerified {
+      verificationStatusLabel.text = emailVerificationStatus ? "Verified" : "Unverified"
+    }
   }
   
   // MARK: Delegate Methods
@@ -30,8 +44,10 @@ class ProfileTableViewController: UITableViewController {
     
     switch (indexPath.section, indexPath.row) {
     case (1, 0):
+      sendVerificationEmail()
+    case (2, 0):
       printUserToken()
-    case (1, 1):
+    case (2, 1):
       logOutUser()
     default:
       break
@@ -44,7 +60,27 @@ class ProfileTableViewController: UITableViewController {
   // MARK: Helper Functions
   
   func logOutUser() {
-    // TODO: Implement
+    do {
+      try FIRAuth.auth()?.signOut()
+      appDelegate.window?.rootViewController = storyboard?.instantiateInitialViewController()
+    } catch {
+      print("Error while signing the user out. \(error)")
+    }
+  }
+  
+  func sendVerificationEmail() {
+    if let emailVerificationStatus = FIRAuth.auth()?.currentUser?.isEmailVerified,
+      emailVerificationStatus == false {
+      FIRAuth.auth()?.currentUser?.sendEmailVerification() {
+        error in
+        
+        guard error == nil else {
+          return
+        }
+        
+        print("Verification Email Sent.")
+      }
+    }
   }
   
   func printUserToken() {
