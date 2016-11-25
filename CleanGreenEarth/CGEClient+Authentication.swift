@@ -10,7 +10,7 @@ import Foundation
 
 extension CGEClient {
   func signup(completionHandler: @escaping ((Any?, Error?) -> Void)) {
-    postRequest(method: "POST", path: "/account", data: nil, completionHandler: completionHandler)
+    request(method: .POST, path: Paths.users, queryString: nil, jsonBody: nil, completionHandler: completionHandler)
   }
   
   func updateName(name: String, completionHandler: @escaping ((Any?, Error?) -> Void)) {
@@ -18,6 +18,6 @@ extension CGEClient {
       "name": name
     ]
     
-    postRequest(method: "PATCH", path: "/account", data: payload, completionHandler: completionHandler)
+    request(method: .PATCH, path: Paths.users, queryString: nil, jsonBody: payload, completionHandler: completionHandler)
   }
 }
