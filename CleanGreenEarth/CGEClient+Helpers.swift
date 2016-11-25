@@ -110,4 +110,12 @@ extension CGEClient {
     
     completionHandler(jsonData, nil)
   }
+  
+  func replace(placeholder: String, in path: String, with text: String) -> String {
+    guard let range = path.range(of: placeholder) else {
+      return path
+    }
+    
+    return path.replacingCharacters(in: range, with: text)
+  }
 }
