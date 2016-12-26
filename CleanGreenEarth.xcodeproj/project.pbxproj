@@ -33,6 +33,7 @@
 		D4E974E01DDFE754002DCA7B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4E974DE1DDFE754002DCA7B /* Main.storyboard */; };
 		D4E974E21DDFE754002DCA7B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4E974E11DDFE754002DCA7B /* Assets.xcassets */; };
 		D4E974E51DDFE754002DCA7B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4E974E31DDFE754002DCA7B /* LaunchScreen.storyboard */; };
+		D4FC443E1E113C5200E182CE /* BasicAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FC443D1E113C5200E182CE /* BasicAlert.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +66,7 @@
 		D4E974E11DDFE754002DCA7B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D4E974E41DDFE754002DCA7B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D4E974E61DDFE754002DCA7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D4FC443D1E113C5200E182CE /* BasicAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicAlert.swift; sourceTree = "<group>"; };
 		F512E20F67AC26A937D2BEF3 /* Pods-CleanGreenEarth.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CleanGreenEarth.release.xcconfig"; path = "Pods/Target Support Files/Pods-CleanGreenEarth/Pods-CleanGreenEarth.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -157,6 +159,7 @@
 		D4E974D91DDFE754002DCA7B /* CleanGreenEarth */ = {
 			isa = PBXGroup;
 			children = (
+				D4FC443C1E113C4300E182CE /* Utilities */,
 				D4E974DA1DDFE754002DCA7B /* AppDelegate.swift */,
 				D4E974DC1DDFE754002DCA7B /* LoginViewController.swift */,
 				D4D19C9E1DE2369300707A2C /* UpdateNameViewController.swift */,
@@ -171,6 +174,14 @@
 				656A5BD41DE6AC8A00647BD0 /* ProfileTableViewController.swift */,
 			);
 			path = CleanGreenEarth;
+			sourceTree = "<group>";
+		};
+		D4FC443C1E113C4300E182CE /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				D4FC443D1E113C5200E182CE /* BasicAlert.swift */,
+			);
+			name = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -314,6 +325,7 @@
 				D4D19CA91DE24D3200707A2C /* CGEClient+Authentication.swift in Sources */,
 				65513D721DE8105A003C79DE /* User.swift in Sources */,
 				D4D19C9F1DE2369300707A2C /* UpdateNameViewController.swift in Sources */,
+				D4FC443E1E113C5200E182CE /* BasicAlert.swift in Sources */,
 				D4D19CA71DE2486600707A2C /* CGEClient+Helpers.swift in Sources */,
 				D43D1CCA1DE22D65008F292E /* Constants.swift in Sources */,
 				65513D741DE8114F003C79DE /* DataController.swift in Sources */,
