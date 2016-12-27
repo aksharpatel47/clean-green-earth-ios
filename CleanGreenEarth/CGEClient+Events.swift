@@ -10,19 +10,19 @@ import Foundation
 import MapKit
 
 extension CGEClient {
-  func createEvent(event: Event, completionHandler: @escaping (Any?, Error?) -> Void) {
-    
-  }
-  
-  func updateEvent(event: Event, completionHandler: @escaping (Any?, Error?) -> Void) {
-    
-  }
-  
-  func deleteEvent(eventId: Event, completionHandler: @escaping (Any?, Error?) -> Void) {
-    
-  }
-  
-  func searchForEvents(around coordinate: CLLocationCoordinate2D, completionHandler: @escaping ([Event]?, Error?) -> Void) {
-    
-  }
+//  func createEvent(event: Event, completionHandler: @escaping (Any?, Error?) -> Void) {
+//    
+//  }
+//  
+//  func updateEvent(event: Event, completionHandler: @escaping (Any?, Error?) -> Void) {
+//    
+//  }
+//  
+//  func deleteEvent(eventId: Event, completionHandler: @escaping (Any?, Error?) -> Void) {
+//    
+//  }
+//  
+//  func searchForEvents(around coordinate: CLLocationCoordinate2D, completionHandler: @escaping ([Event]?, Error?) -> Void) {
+//    
+//  }
 }

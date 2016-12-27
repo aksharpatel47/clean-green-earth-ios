@@ -28,8 +28,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       window?.rootViewController = tabBarViewController
     }
     
-    DataController.shared.autoSave(after: 60)
-    
     return true
   }
 
