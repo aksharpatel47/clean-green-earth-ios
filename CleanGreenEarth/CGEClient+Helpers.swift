@@ -57,7 +57,7 @@ extension CGEClient {
         return
       }
       
-      request.addValue(token, forHTTPHeaderField: HeaderKeys.authorization)
+      request.addValue("Bearer \(token)", forHTTPHeaderField: HeaderKeys.authorization)
       
       completionHandler(request, nil)
     }

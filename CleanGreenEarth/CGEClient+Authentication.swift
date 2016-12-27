@@ -9,7 +9,8 @@
 import Foundation
 
 extension CGEClient {
-  func signup(completionHandler: @escaping ((Any?, Error?) -> Void)) {
-    request(method: .POST, path: Paths.users, queryString: nil, jsonBody: nil, completionHandler: completionHandler)
+  func signup(withName name: String, completionHandler: @escaping ((Any?, Error?) -> Void)) {
+    let body = ["name": name]
+    request(method: .POST, path: Paths.users, queryString: nil, jsonBody: body, completionHandler: completionHandler)
   }
 }

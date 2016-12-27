@@ -33,7 +33,17 @@ class ProfileTableViewController: UITableViewController {
     super.viewWillAppear(animated)
     
     if let emailVerificationStatus = FIRAuth.auth()?.currentUser?.isEmailVerified {
-      verificationStatusLabel.text = emailVerificationStatus ? "Verified" : "Unverified"
+      self.verificationStatusLabel.text = emailVerificationStatus ? "Verified" : "Unverified"
+      self.verificationStatusLabel.backgroundColor = emailVerificationStatus ? UIColor.darkGray : UIColor.red
+    }
+    
+    FIRAuth.auth()?.currentUser?.reload() {
+      completion in
+      
+      if let emailVerificationStatus = FIRAuth.auth()?.currentUser?.isEmailVerified {
+        self.verificationStatusLabel.text = emailVerificationStatus ? "Verified" : "Unverified"
+        self.verificationStatusLabel.backgroundColor = emailVerificationStatus ? UIColor.darkGray : UIColor.red
+      }
     }
   }
   
