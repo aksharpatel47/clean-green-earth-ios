@@ -18,6 +18,7 @@
 		656A5BD91DE6F10C00647BD0 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 656A5BD71DE6F10C00647BD0 /* DataModel.xcdatamodeld */; };
 		65B493971DE57B7800317ACB /* SearchEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B493961DE57B7800317ACB /* SearchEventsViewController.swift */; };
 		65B4939D1DE5848B00317ACB /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65B4939C1DE5848B00317ACB /* MapKit.framework */; };
+		65F8B80D1E126B14009F8A93 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F8B80C1E126B14009F8A93 /* RoundedButton.swift */; };
 		D41538CA1E11563000F047E3 /* NetworkRequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41538C91E11563000F047E3 /* NetworkRequestProtocol.swift */; };
 		D41538CD1E1158FC00F047E3 /* RoundedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41538CC1E1158FC00F047E3 /* RoundedLabel.swift */; };
 		D43D1CC81DE22B72008F292E /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43D1CC71DE22B72008F292E /* SignupViewController.swift */; };
@@ -50,6 +51,7 @@
 		656A5BD81DE6F10C00647BD0 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		65B493961DE57B7800317ACB /* SearchEventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchEventsViewController.swift; sourceTree = "<group>"; };
 		65B4939C1DE5848B00317ACB /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		65F8B80C1E126B14009F8A93 /* RoundedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		66BDFE95D92554B3B4D61A48 /* Pods-CleanGreenEarth.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CleanGreenEarth.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CleanGreenEarth/Pods-CleanGreenEarth.debug.xcconfig"; sourceTree = "<group>"; };
 		D41538C91E11563000F047E3 /* NetworkRequestProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkRequestProtocol.swift; sourceTree = "<group>"; };
 		D41538CC1E1158FC00F047E3 /* RoundedLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedLabel.swift; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				D41538CC1E1158FC00F047E3 /* RoundedLabel.swift */,
+				65F8B80C1E126B14009F8A93 /* RoundedButton.swift */,
 			);
 			name = CustomComponents;
 			sourceTree = "<group>";
@@ -347,6 +350,7 @@
 				D41538CD1E1158FC00F047E3 /* RoundedLabel.swift in Sources */,
 				65513D761DE8626A003C79DE /* CGEClient+Users.swift in Sources */,
 				656A5BD91DE6F10C00647BD0 /* DataModel.xcdatamodeld in Sources */,
+				65F8B80D1E126B14009F8A93 /* RoundedButton.swift in Sources */,
 				656A5BD51DE6AC8A00647BD0 /* ProfileTableViewController.swift in Sources */,
 				D4D19CA51DE247F600707A2C /* CGEClient+Constants.swift in Sources */,
 				65513D701DE7FE8D003C79DE /* Event.swift in Sources */,

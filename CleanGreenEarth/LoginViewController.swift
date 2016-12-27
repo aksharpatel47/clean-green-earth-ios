@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FBSDKLoginKit
 
 class LoginViewController: UIViewController {
   
@@ -16,6 +17,19 @@ class LoginViewController: UIViewController {
   @IBOutlet weak var emailTextField: UITextField!
   @IBOutlet weak var passwordTextField: UITextField!
   @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+  @IBOutlet weak var loginViewsStackView: UIStackView!
+  
+  // MARK: Lifecycle Methods
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    
+    let fbLoginButton = FBSDKLoginButton()
+    fbLoginButton.delegate = self
+    loginViewsStackView.addArrangedSubview(fbLoginButton)
+    let constraint = NSLayoutConstraint(item: fbLoginButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 45)
+    fbLoginButton.addConstraint(constraint)
+  }
   
   // MARK: Helper Functions
   
@@ -83,7 +97,9 @@ class LoginViewController: UIViewController {
         return
       }
       
-      self.performSegue(withIdentifier: Constants.Segues.successfulLogin, sender: nil)
+      DispatchQueue.main.async {
+        self.performSegue(withIdentifier: Constants.Segues.successfulLogin, sender: nil)
+      }
     }
   }
   
@@ -92,3 +108,32 @@ class LoginViewController: UIViewController {
   }
 }
 
+extension LoginViewController: FBSDKLoginButtonDelegate {
+  func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
+    guard error == nil else {
+      return
+    }
+    
+    let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
+    
+    FIRAuth.auth()?.signIn(with: credential) {
+      user, error in
+      
+      guard user != nil, error == nil else {
+        return
+      }
+      
+      DispatchQueue.main.async {
+        self.performSegue(withIdentifier: Constants.Segues.successfulLogin, sender: nil)
+      }
+    }
+  }
+  
+  func loginButtonWillLogin(_ loginButton: FBSDKLoginButton!) -> Bool {
+    return true
+  }
+  
+  func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
+    
+  }
+}
