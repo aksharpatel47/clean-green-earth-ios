@@ -78,7 +78,7 @@ class LoginViewController: UIViewController {
         if let error = error as? NSError, error.domain == FIRAuthErrorDomain {
           
           var alertTitle = "Cannot Login"
-          var alertMessage = "Please check your Email adress and Password."
+          var alertMessage = "Please check your Email address and Password."
           let alertButtonTitle = "Ok"
           
           if error.code == FIRAuthErrorCode.errorCodeNetworkError.rawValue {
@@ -110,6 +110,11 @@ class LoginViewController: UIViewController {
 
 extension LoginViewController: FBSDKLoginButtonDelegate {
   func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
+    
+    DispatchQueue.main.async {
+      self.updateAfterNetworkRequest()
+    }
+    
     guard error == nil else {
       return
     }
@@ -130,6 +135,10 @@ extension LoginViewController: FBSDKLoginButtonDelegate {
   }
   
   func loginButtonWillLogin(_ loginButton: FBSDKLoginButton!) -> Bool {
+    DispatchQueue.main.async {
+      self.prepareForNetworkRequest()
+    }
+    
     return true
   }
   
