@@ -9,4 +9,5 @@ target 'CleanGreenEarth' do
   pod 'Firebase/Core'
   pod 'Firebase/Crash'
   pod 'Firebase/Auth'
+  pod 'GoogleSignIn'
 end
