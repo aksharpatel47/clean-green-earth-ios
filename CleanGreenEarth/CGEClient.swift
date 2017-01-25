@@ -54,4 +54,26 @@ final class CGEClient {
       self.runDataTask(with: request, completionHandler: completionHandler)
     }
   }
+  
+  func downloadFile(withURLString urlString: String, completionHandler: @escaping (Data?, Error?) -> Void) {
+    guard let url = URL(string: urlString) else {
+      let error = NSError(domain: CGEClient.errorDomain, code: CGEClient.ErrorCode.unknown.rawValue, userInfo: [NSLocalizedDescriptionKey: "Error while creating URL."])
+      completionHandler(nil, error)
+      return
+    }
+    
+    downloadFile(withURL: url, completionHandler: completionHandler)
+  }
+  
+  func downloadFile(withURL url: URL, completionHandler: @escaping (Data?, Error?) -> Void) {
+    let request = URLRequest(url: url)
+    
+    let task = URLSession.shared.dataTask(with: request) {
+      data, response, error in
+      
+      completionHandler(data, error)
+    }
+    
+    task.resume()
+  }
 }

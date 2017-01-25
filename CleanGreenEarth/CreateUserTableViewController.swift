@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class CreateUserTableViewController: UITableViewController {
   
@@ -18,6 +19,24 @@ class CreateUserTableViewController: UITableViewController {
     
     userDisplayNameTextField.delegate = self
     userImageView.image = UIImage()
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    if let url = FIRAuth.auth()?.currentUser?.photoURL {
+      CGEClient.shared.downloadFile(withURL: url) {
+        data, error in
+        
+        guard let data = data, error == nil else {
+          return
+        }
+        
+        let image = UIImage(data: data)
+        
+        DispatchQueue.main.async {
+          self.userImageView.image = image
+        }
+      }
+    }
   }
   
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
