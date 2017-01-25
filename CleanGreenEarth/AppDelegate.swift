@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     
-    if FIRAuth.auth()?.currentUser != nil {
+    if UserDefaults.standard.bool(forKey: Constants.OfflineKeys.successfulSignIn) {
       let mainStoryboard = UIStoryboard(name: Constants.Storyboards.main, bundle: nil)
       let tabBarViewController = mainStoryboard.instantiateViewController(withIdentifier: Constants.Controllers.tabBarController)
       window?.rootViewController = tabBarViewController

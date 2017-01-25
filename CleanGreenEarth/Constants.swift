@@ -24,4 +24,8 @@ struct Constants {
   struct Controllers {
     static let tabBarController = "TabBarController"
   }
+  
+  struct OfflineKeys {
+    static let successfulSignIn = "successfulSignIn"
+  }
 }

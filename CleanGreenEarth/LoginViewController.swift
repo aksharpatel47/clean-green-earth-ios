@@ -92,6 +92,7 @@ class LoginViewController: UITableViewController {
       }
       
       DispatchQueue.main.async {
+        UserDefaults.standard.set(true, forKey: Constants.OfflineKeys.successfulSignIn)
         self.performSegue(withIdentifier: Constants.Segues.successfulLogin, sender: nil)
       }
     }

@@ -72,6 +72,7 @@ class ProfileTableViewController: UITableViewController {
   func logOutUser() {
     do {
       try FIRAuth.auth()?.signOut()
+      UserDefaults.standard.set(false, forKey: Constants.OfflineKeys.successfulSignIn)
       appDelegate.window?.rootViewController = storyboard?.instantiateInitialViewController()
     } catch {
       print("Error while signing the user out. \(error)")

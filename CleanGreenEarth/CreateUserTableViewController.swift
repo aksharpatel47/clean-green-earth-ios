@@ -83,6 +83,7 @@ class CreateUserTableViewController: UITableViewController {
       }
       
       DispatchQueue.main.async {
+        UserDefaults.standard.set(true, forKey: Constants.OfflineKeys.successfulSignIn)
         self.performSegue(withIdentifier: Constants.Segues.successfulSignup, sender: nil)
       }
     }
