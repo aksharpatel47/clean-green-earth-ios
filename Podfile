@@ -9,8 +9,10 @@ target 'CleanGreenEarth' do
   pod 'Firebase/Core'
   pod 'Firebase/Crash'
   pod 'Firebase/Auth'
-  pod 'Bolts'
-  pod 'FBSDKCoreKit'
-  pod 'FBSDKLoginKit'
-  pod 'FBSDKShareKit'
-end
+  pod 'Bolts', '1.8.4'
+  pod 'FBSDKCoreKit', '4.18.0'
+  pod 'FBSDKLoginKit', '4.18.0'
+  pod 'FBSDKShareKit', '4.18.0'
+  pod 'GoogleMaps', '2.1.1'
+  pod 'GooglePlaces', '2.1.1'
+ends
