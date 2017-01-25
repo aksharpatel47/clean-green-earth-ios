@@ -13,10 +13,10 @@ final class CGEClient {
   
   static let shared = CGEClient()
   
-  let cgeErrorDomain = "CGEErrorDomain"
+  static let errorDomain = "CGEErrorDomain"
   
   enum ErrorCode: Int {
-    case unknown = 0, noCurrentUser, authenticationFailed, invalidRequest, notFound, invalidJSON
+    case unknown, authenticationFailed, generalError, malformedRequest, notFound, invalidJSON, serverError
   }
   
   enum HTTPMethods: String {
@@ -31,6 +31,19 @@ final class CGEClient {
                   completionHandler: @escaping ((Any?, Error?) -> Void)) {
     
     createRequest(method: method, path: path, queryString: queryString, jsonBody: jsonBody) {
+      request, error in
+      
+      guard let request = request, error == nil else {
+        completionHandler(nil, error)
+        return
+      }
+      
+      self.runDataTask(with: request, completionHandler: completionHandler)
+    }
+  }
+  
+  func uploadRequest(method: HTTPMethods, path: String, files: [CGEFile], data: [String:String]?, completionHandler: @escaping ((Any?, Error?) -> Void)) {
+    createUploadRequest(method: method, path: path, files: files, mpData: data) {
       request, error in
       
       guard let request = request, error == nil else {

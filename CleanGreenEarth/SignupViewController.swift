@@ -14,30 +14,25 @@ class SignupViewController: UIViewController {
   // MARK: Outlets
   
   @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-  @IBOutlet weak var nameTextField: UITextField!
   @IBOutlet weak var emailTextField: UITextField!
   @IBOutlet weak var passwordTextField: UITextField!
-  @IBOutlet weak var retypePasswordTextField: UITextField!
   
   // MARK: Functions
   
   func setTextFields(isEnabled enabled: Bool) {
-    nameTextField.isEnabled = enabled
     emailTextField.isEnabled = enabled
     passwordTextField.isEnabled = enabled
-    retypePasswordTextField.isEnabled = enabled
   }
   
   // MARK: Actions
   
   @IBAction func signup(_ sender: AnyObject) {
     
-    guard let name = nameTextField.text,
-      let email = emailTextField.text,
+    guard let email = emailTextField.text,
       let password = passwordTextField.text,
-      let retypePassword = retypePasswordTextField.text,
-      !email.isEmpty, !password.isEmpty, !retypePassword.isEmpty,
-      password == retypePassword else {
+      !email.isEmpty, !password.isEmpty else {
+        
+        // TODO: Also Check if the email is a valid email
         
         DispatchQueue.main.async {
           self.showBasicAlert(withTitle: "Inputs Missing", message: "Please enter all the inputs to Sign up.", buttonTitle: "Ok", completionHandler: nil)
@@ -48,63 +43,51 @@ class SignupViewController: UIViewController {
     
     prepareForNetworkRequest()
     
-    FIRAuth.auth()?.createUser(withEmail: email, password: password) {
+    CGEClient.shared.signUp(withEmail: email, password: password) {
       user, error in
       
-      guard let _ = user, error == nil else {
+      self.updateAfterNetworkRequest()
+      
+      guard error == nil else {
         
-        self.updateAfterNetworkRequest()
+        // TODO: Handle Generic Errors
         
-        if let error = error as? NSError, error.domain == FIRAuthErrorDomain {
+        if let error = error as? NSError {
           
-          if error.code == FIRAuthErrorCode.errorCodeNetworkError.rawValue {
-            
-          } else if error.code == FIRAuthErrorCode.errorCodeEmailAlreadyInUse.rawValue {
-            
-          } else {
-            
+          var alertTitle = "Sign Up Failed"
+          var alertMessage = "Failed to create the user. Please check the inputs and try again."
+          let alertButtonText = "Ok"
+          
+          switch (error.domain, error.code) {
+          case (FIRAuthErrorDomain, FIRAuthErrorCode.errorCodeNetworkError.rawValue):
+            alertTitle = "No Internet"
+            alertMessage = "Please connect to the Internet to proceed further."
+            break
+          case (FIRAuthErrorDomain, FIRAuthErrorCode.errorCodeEmailAlreadyInUse.rawValue):
+            alertTitle = "Account Exists"
+            alertMessage = "There already exists an account with this email. Please login using this email to continue."
+            break
+          default:
+            break
+          }
+          
+          DispatchQueue.main.async {
+            self.showBasicAlert(withTitle: alertTitle, message: alertMessage, buttonTitle: alertButtonText, completionHandler: nil)
           }
         }
         
         return
       }
       
-      let request = FIRAuth.auth()?.currentUser?.profileChangeRequest()
-      request?.displayName = name
-      request?.commitChanges() {
-        requestError in
-        
-        if let requestError = requestError as? NSError, requestError.domain == FIRAuthErrorDomain {
-          
-          self.updateAfterNetworkRequest()
-          
-          if requestError.code == FIRAuthErrorCode.errorCodeNetworkError.rawValue {
-            
-          } else {
-            
-          }
-        } else {
-          
-          CGEClient.shared.signup(withName: name) {
-            user, error in
-            
-            self.updateAfterNetworkRequest()
-            
-            guard error == nil else {
-              return
-            }
-            
-            DispatchQueue.main.async {
-              self.performSegue(withIdentifier: Constants.Segues.successfulSignup, sender: nil)
-            }
-          }
-        }
+      DispatchQueue.main.async {
+        self.performSegue(withIdentifier: Constants.Segues.createUserOnServer, sender: nil)
       }
     }
   }
 }
 
 extension SignupViewController: NetworkRequestProtocol {
+  /// All operations that must be executed before a network request starts. Runs on the main thread.
   func prepareForNetworkRequest() {
     DispatchQueue.main.async {
       self.activityIndicator.startAnimating()
@@ -112,6 +95,7 @@ extension SignupViewController: NetworkRequestProtocol {
     }
   }
   
+  /// All operations that must be executed after a network request completes. Runs on the main thread.
   func updateAfterNetworkRequest() {
     DispatchQueue.main.async {
       self.activityIndicator.stopAnimating()

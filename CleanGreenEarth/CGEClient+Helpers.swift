@@ -27,6 +27,61 @@ extension CGEClient {
     return urlComponents.url
   }
   
+  func createUploadRequest(method: HTTPMethods, path: String, files: [CGEFile], mpData: [String:String]?, completionHandler: @escaping (URLRequest?, Error?) -> Void) {
+    guard let url = constructURL(path: path, queryString: nil) else {
+      let userInfo = [NSLocalizedDescriptionKey: "Error while constructing url for \(path)"]
+      completionHandler(nil, NSError(domain: NSURLErrorDomain, code: NSURLErrorBadURL, userInfo: userInfo))
+      return
+    }
+    
+    var request = URLRequest(url: url)
+    request.httpMethod = method.rawValue
+    
+    let boundary = "Boundary-\(UUID().uuidString)"
+    
+    request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "content-type")
+    
+    var data = Data()
+    
+    for file in files {
+      data.append("--\(boundary)".data(using: .utf8)!)
+      data.append("Content-Disposition:form-data; name =\"\(file.name)\"; filename=\"\(file.name).jpg\"\r\n".data(using: .utf8)!)
+      data.append("Content-Type: \(file.mimeType)\r\n\r\n".data(using: .utf8)!)
+      data.append(file.data)
+      data.append("\r\n".data(using: .utf8)!)
+    }
+    
+    if let mpData = mpData {
+      for (key, value) in mpData {
+        data.append("--\(boundary)".data(using: .utf8)!)
+        data.append("Content-Disposition:form-data; name=\"\(key)\"\r\n\r\n".data(using: .utf8)!)
+        data.append("\(value)\r\n".data(using: .utf8)!)
+      }
+    }
+    
+    data.append("--\(boundary)--".data(using: .utf8)!)
+    
+    request.httpBody = data
+    
+    if let currentUser = FIRAuth.auth()?.currentUser {
+      currentUser.getTokenWithCompletion() {
+        token, error in
+        
+        guard let token = token, error == nil else {
+          completionHandler(nil, error)
+          return
+        }
+        
+        request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        
+        completionHandler(request, nil)
+      }
+    } else {
+      let authenticationError = NSError(domain: CGEClient.errorDomain, code: CGEClient.ErrorCode.authenticationFailed.rawValue, userInfo: nil)
+      completionHandler(nil, authenticationError)
+    }
+  }
+  
   func createRequest(method: HTTPMethods, path: String, queryString: [String:Any]?, jsonBody: [String:Any]?,
                      completionHandler: @escaping (URLRequest?, Error?) -> Void) {
     guard let url = constructURL(path: path, queryString: queryString) else {
@@ -43,23 +98,21 @@ extension CGEClient {
       request.addValue(HeaderValues.contentTypeJSON, forHTTPHeaderField: HeaderKeys.contentType)
     }
     
-    guard let currentUser = FIRAuth.auth()?.currentUser else {
-      let userInfo = [NSLocalizedDescriptionKey: "No user logged in. Please login and continue"]
-      completionHandler(nil, NSError(domain: FIRAuthErrorDomain, code: FIRAuthErrorCode.errorCodeUserNotFound.rawValue, userInfo: userInfo))
-      return
-    }
-    
-    currentUser.getTokenWithCompletion() {
-      token, error in
-      
-      guard let token = token, error == nil else {
-        completionHandler(nil, error)
-        return
+    if let currentUser = FIRAuth.auth()?.currentUser {
+      currentUser.getTokenWithCompletion() {
+        token, error in
+        
+        guard let token = token, error == nil else {
+          completionHandler(nil, error)
+          return
+        }
+        
+        request.addValue("Bearer \(token)", forHTTPHeaderField: HeaderKeys.authorization)
+        
+        completionHandler(request, nil)
       }
-      
-      request.addValue("Bearer \(token)", forHTTPHeaderField: HeaderKeys.authorization)
-      
-      completionHandler(request, nil)
+    } else {
+      completionHandler(nil, NSError(domain: CGEClient.errorDomain, code: ErrorCode.authenticationFailed.rawValue, userInfo: nil))
     }
   }
   
@@ -88,22 +141,28 @@ extension CGEClient {
         errorDescription = "Invalid or expired token."
         code = ErrorCode.authenticationFailed
       } else if statusCode == 400 {
+        errorDescription = "Error while processing request. \(response!.url)"
+        code = ErrorCode.generalError
+      } else if statusCode == 422 {
         errorDescription = "Invalid URL Request. \(response!.url)"
-        code = ErrorCode.invalidRequest
+        code = ErrorCode.malformedRequest
       } else if statusCode == 404 {
         errorDescription = "No resource exists for url \(response!.url)"
         code = ErrorCode.notFound
+      } else if statusCode >= 500 {
+        errorDescription = "Server encountered an error. \(response!.url)"
+        code = ErrorCode.serverError
       }
       
       let userInfo = [NSLocalizedDescriptionKey: errorDescription]
-      completionHandler(nil, NSError(domain: cgeErrorDomain, code: code.rawValue, userInfo: userInfo))
+      completionHandler(nil, NSError(domain: CGEClient.errorDomain, code: code.rawValue, userInfo: userInfo))
       
       return
     }
     
     guard let jsonData = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) else {
       let userInfo = [NSLocalizedDescriptionKey: "Error while parsing json"]
-      completionHandler(nil, NSError(domain: cgeErrorDomain, code: ErrorCode.invalidJSON.rawValue,
+      completionHandler(nil, NSError(domain: CGEClient.errorDomain, code: ErrorCode.invalidJSON.rawValue,
                                      userInfo: userInfo))
       return
     }

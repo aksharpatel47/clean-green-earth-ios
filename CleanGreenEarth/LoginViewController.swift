@@ -10,39 +10,36 @@ import UIKit
 import Firebase
 import FBSDKLoginKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UITableViewController {
   
   // MARK: Outlets
   
   @IBOutlet weak var emailTextField: UITextField!
   @IBOutlet weak var passwordTextField: UITextField!
-  @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-  @IBOutlet weak var loginViewsStackView: UIStackView!
+  @IBOutlet weak var facebookLoginButton: FBSDKLoginButton!
   
   // MARK: Lifecycle Methods
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    let fbLoginButton = FBSDKLoginButton()
-    fbLoginButton.delegate = self
-    loginViewsStackView.addArrangedSubview(fbLoginButton)
-    let constraint = NSLayoutConstraint(item: fbLoginButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 45)
-    fbLoginButton.addConstraint(constraint)
+    facebookLoginButton.delegate = self
+    emailTextField.delegate = self
+    passwordTextField.delegate = self
   }
   
   // MARK: Helper Functions
   
   func prepareForNetworkRequest() {
     DispatchQueue.main.async {
-      self.activityIndicator.startAnimating()
+      self.showLoadingIndicator(withText: "Logging In...")
       self.setTextFields(isEnabled: false)
     }
   }
   
   func updateAfterNetworkRequest() {
     DispatchQueue.main.async {
-      self.activityIndicator.stopAnimating()
+      self.hideLoadingIndicator()
       self.setTextFields(isEnabled: true)
     }
   }
@@ -68,30 +65,27 @@ class LoginViewController: UIViewController {
     
     prepareForNetworkRequest()
     
-    FIRAuth.auth()?.signIn(withEmail: email, password: password) {
-      user, error in
+    CGEClient.shared.signIn(withEmail: email, password: password) {
+      data, error in
       
       self.updateAfterNetworkRequest()
       
-      guard user != nil, error == nil else {
+      guard error == nil else {
         
-        if let error = error as? NSError, error.domain == FIRAuthErrorDomain {
-          
-          var alertTitle = "Cannot Login"
-          var alertMessage = "Please check your Email address and Password."
-          let alertButtonTitle = "Ok"
-          
-          if error.code == FIRAuthErrorCode.errorCodeNetworkError.rawValue {
-            alertTitle = "No Internet"
-            alertMessage = "Please connect to the Internet."
-          } else if error.code == FIRAuthErrorCode.errorCodeUserNotFound.rawValue {
-            alertTitle = "User Not Found"
-            alertMessage = "Please create a new User with this Email address."
-          }
+        guard let error = error as? NSError else {
+          return
+        }
+        
+        switch (error.domain, error.code) {
+        case (CGEClient.errorDomain, CGEClient.ErrorCode.notFound.rawValue):
           
           DispatchQueue.main.async {
-            self.showBasicAlert(withTitle: alertTitle, message: alertMessage, buttonTitle: alertButtonTitle, completionHandler: nil)
+            self.performSegue(withIdentifier: Constants.Segues.signupIncomplete, sender: nil)
           }
+          
+          break
+        default:
+          break
         }
         
         return
@@ -101,10 +95,6 @@ class LoginViewController: UIViewController {
         self.performSegue(withIdentifier: Constants.Segues.successfulLogin, sender: nil)
       }
     }
-  }
-  
-  @IBAction func signup(_ sender: AnyObject) {
-    performSegue(withIdentifier: Constants.Segues.signup, sender: nil)
   }
 }
 
@@ -144,5 +134,14 @@ extension LoginViewController: FBSDKLoginButtonDelegate {
   
   func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
     
+  }
+}
+
+// MARK: - Text Field Delegates
+
+extension LoginViewController: UITextFieldDelegate {
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    textField.resignFirstResponder()
+    return true
   }
 }

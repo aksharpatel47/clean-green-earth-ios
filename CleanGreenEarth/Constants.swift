@@ -10,9 +10,10 @@ import Foundation
 
 struct Constants {
   struct Segues {
-    static let signup = "signup"
+    static let signupIncomplete = "signupIncomplete"
     static let successfulLogin = "successfulLogin"
     static let successfulSignup = "successfulSignup"
+    static let createUserOnServer = "createUserOnServer"
     static let updateName = "updateName"
   }
   
