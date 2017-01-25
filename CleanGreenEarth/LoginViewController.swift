@@ -31,17 +31,13 @@ class LoginViewController: UITableViewController {
   // MARK: Helper Functions
   
   func prepareForNetworkRequest() {
-    DispatchQueue.main.async {
-      self.showLoadingIndicator(withText: "Logging In...")
-      self.setTextFields(isEnabled: false)
-    }
+    self.showLoadingIndicator(withText: "Logging In...")
+    self.setTextFields(isEnabled: false)
   }
   
   func updateAfterNetworkRequest() {
-    DispatchQueue.main.async {
-      self.hideLoadingIndicator()
-      self.setTextFields(isEnabled: true)
-    }
+    self.hideLoadingIndicator()
+    self.setTextFields(isEnabled: true)
   }
   
   func setTextFields(isEnabled enabled: Bool) {
@@ -63,12 +59,16 @@ class LoginViewController: UITableViewController {
         return
     }
     
-    prepareForNetworkRequest()
+    DispatchQueue.main.async {
+      self.prepareForNetworkRequest()
+    }
     
     CGEClient.shared.signIn(withEmail: email, password: password) {
       data, error in
       
-      self.updateAfterNetworkRequest()
+      DispatchQueue.main.async {
+        self.updateAfterNetworkRequest()
+      }
       
       guard error == nil else {
         
@@ -102,24 +102,40 @@ class LoginViewController: UITableViewController {
 extension LoginViewController: FBSDKLoginButtonDelegate {
   func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
     
-    DispatchQueue.main.async {
-      self.updateAfterNetworkRequest()
-    }
-    
-    guard error == nil else {
+    guard let result = result, let token = result.token, let tokenString = token.tokenString, error == nil else {
+      DispatchQueue.main.async {
+        self.updateAfterNetworkRequest()
+      }
       return
     }
     
-    let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
-    
-    FIRAuth.auth()?.signIn(with: credential) {
-      user, error in
+    CGEClient.shared.signIn(withFacebookToken: tokenString) {
+      data, error in
       
-      guard user != nil, error == nil else {
+      DispatchQueue.main.async {
+        self.updateAfterNetworkRequest()
+      }
+      
+      guard error == nil else {
+        
+        guard let error = error as? NSError else {
+          return
+        }
+        
+        switch (error.domain, error.code) {
+        case (CGEClient.errorDomain, CGEClient.ErrorCode.notFound.rawValue):
+          DispatchQueue.main.async {
+            self.performSegue(withIdentifier: Constants.Segues.signupIncomplete, sender: nil)
+          }
+        default:
+          break
+        }
+        
         return
       }
       
       DispatchQueue.main.async {
+        UserDefaults.standard.set(true, forKey: Constants.OfflineKeys.successfulSignIn)
         self.performSegue(withIdentifier: Constants.Segues.successfulLogin, sender: nil)
       }
     }
