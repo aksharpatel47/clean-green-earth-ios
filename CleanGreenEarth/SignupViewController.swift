@@ -9,11 +9,10 @@
 import UIKit
 import Firebase
 
-class SignupViewController: UIViewController {
+class SignupViewController: UITableViewController {
   
   // MARK: Outlets
   
-  @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
   @IBOutlet weak var emailTextField: UITextField!
   @IBOutlet weak var passwordTextField: UITextField!
   
@@ -90,7 +89,7 @@ extension SignupViewController: NetworkRequestProtocol {
   /// All operations that must be executed before a network request starts. Runs on the main thread.
   func prepareForNetworkRequest() {
     DispatchQueue.main.async {
-      self.activityIndicator.startAnimating()
+      self.showLoadingIndicator(withText: "Signing Up...")
       self.setTextFields(isEnabled: false)
     }
   }
@@ -98,7 +97,7 @@ extension SignupViewController: NetworkRequestProtocol {
   /// All operations that must be executed after a network request completes. Runs on the main thread.
   func updateAfterNetworkRequest() {
     DispatchQueue.main.async {
-      self.activityIndicator.stopAnimating()
+      self.hideLoadingIndicator()
       self.setTextFields(isEnabled: true)
     }
   }
