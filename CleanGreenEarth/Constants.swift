@@ -28,4 +28,8 @@ struct Constants {
   struct OfflineKeys {
     static let successfulSignIn = "successfulSignIn"
   }
+  
+  struct Keys {
+    static let googleIOS = "AIzaSyBAS0H1jlLTxYpKpaJFGj6irwrdQJbFldQ"
+  }
 }

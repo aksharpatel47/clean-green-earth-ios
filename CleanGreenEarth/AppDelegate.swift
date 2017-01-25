@@ -9,6 +9,8 @@
 import UIKit
 import Firebase
 import FBSDKCoreKit
+import GoogleMaps
+import GooglePlaces
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,6 +23,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     FIRApp.configure()
     
     FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+    
+    GMSServices.provideAPIKey(Constants.Keys.googleIOS)
+    GMSPlacesClient.provideAPIKey(Constants.Keys.googleIOS)
     
     if UserDefaults.standard.bool(forKey: Constants.OfflineKeys.successfulSignIn) {
       let mainStoryboard = UIStoryboard(name: Constants.Storyboards.main, bundle: nil)
