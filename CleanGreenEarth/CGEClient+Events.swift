@@ -22,7 +22,7 @@ extension CGEClient {
     }
   }
   
-  func getEvents(completionHandler: @escaping (Error?) -> Void) {
+  func getEvents(forUser user: CGEUser, completionHandler: @escaping (Error?) -> Void) {
     request(method: .GET, path: Paths.userEvents, queryString: nil, jsonBody: nil) {
       response, error in
       
@@ -34,11 +34,11 @@ extension CGEClient {
           return
       }
       
+      let objectId = user.objectID
+      
       CGEDataStack.shared.performBackgroundBatchOperation() {
         context in
-        let userFR = NSFetchRequest<CGEUser>(entityName: "CGEUser")
-        userFR.predicate = NSPredicate(format: "id == %@", FIRAuth.auth()!.currentUser!.uid)
-        let currentUser = (try! context.fetch(userFR)).first!
+        let currentUser = context.object(with: objectId) as! CGEUser
         
         for createdEvent in createdEvents {
           let event = CGEEvent(dictionary: createdEvent, context: context)
@@ -47,9 +47,7 @@ extension CGEClient {
         
         for attEvent in attendingEvents {
           let event = CGEEvent(dictionary: attEvent, context: context)
-          var attendingEvents = (currentUser.attending as! Set<CGEEvent>)
-          attendingEvents.insert(event)
-          currentUser.attending = attendingEvents as NSSet?
+          event.addToAttendees(currentUser)
         }
       }
       

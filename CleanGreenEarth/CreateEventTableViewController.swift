@@ -73,8 +73,22 @@ class CreateEventTableViewController: UITableViewController {
       
       guard error == nil else {
         
-        DispatchQueue.main.async {
-          self.showBasicAlert(withTitle: "Event Creation Failed", message: "Error while creating event. Please try again.", buttonTitle: "Ok", completionHandler: nil)
+        guard let error = error as? NSError else {
+          return
+        }
+        
+        let title = "Event Creation Failed"
+        let message = "Error while creating event. Please try again."
+        let buttonTitle = "Ok"
+        
+        if let alert = createAlertController(forError: error) {
+          DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+          }
+        } else {
+          DispatchQueue.main.async {
+            self.showBasicAlert(withTitle: title, message: message, buttonTitle: buttonTitle, completionHandler: nil)
+          }
         }
         
         return
@@ -244,6 +258,24 @@ extension CreateEventTableViewController: UIImagePickerControllerDelegate, UINav
   func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
     DispatchQueue.main.async {
       self.dismiss(animated: true, completion: nil)
+    }
+  }
+}
+
+extension CreateEventTableViewController: NetworkRequestProtocol {
+  func prepareForNetworkRequest() {
+    setControls(isEnabled: false)
+  }
+  
+  func updateAfterNetworkRequest() {
+    setControls(isEnabled: false)
+  }
+  
+  func setControls(isEnabled enabled: Bool) {
+    DispatchQueue.main.async {
+      self.tableView.isUserInteractionEnabled = enabled
+      self.navigationItem.leftBarButtonItem?.isEnabled = enabled
+      self.navigationItem.rightBarButtonItem?.isEnabled = enabled
     }
   }
 }

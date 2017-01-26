@@ -21,14 +21,22 @@ class EventsListCell: UITableViewCell {
 fileprivate let reuseIdentifier = "eventCell"
 
 class EventsListTableViewController: CoreDataTableViewController {
+  
+  // MARK: Properties
+  
+  var currentUser: CGEUser?
+  
+  // MARK: Lifecycle Methods
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
     tableView.tableFooterView = UIView()
     
     let context = CGEDataStack.shared.managedObjectContext
+    currentUser = CGEUser.getUser(withId: nil)
     
-    if let currentUser = CGEUser.getUser(withId: nil) {
+    if let currentUser = currentUser {
       let fr = NSFetchRequest<NSFetchRequestResult>(entityName: "CGEEvent")
       fr.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
       fr.predicate = NSPredicate(format: "owner == %@ OR attendees contains %@", currentUser, currentUser)
@@ -44,7 +52,7 @@ class EventsListTableViewController: CoreDataTableViewController {
       prepareForNetworkRequest()
     }
     
-    CGEClient.shared.getEvents() {
+    CGEClient.shared.getEvents(forUser: currentUser!) {
       error in
       
       self.updateAfterNetworkRequest()
