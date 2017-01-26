@@ -11,7 +11,7 @@ import GooglePlaces
 import DatePickerDialog
 
 class CreateEventTableViewController: UITableViewController {
-
+  
   // MARK: Properties
   
   var eventLocation: GMSPlace?
@@ -68,8 +68,12 @@ class CreateEventTableViewController: UITableViewController {
   
   @IBAction func savePressed(_ sender: UIBarButtonItem) {
     
+    prepareForNetworkRequest()
+    
     CGEClient.shared.createEvent(eventDetails: eventDataDictionary, eventImage: eventImageView.image) {
       data, error in
+      
+      self.updateAfterNetworkRequest()
       
       guard error == nil else {
         
@@ -264,18 +268,22 @@ extension CreateEventTableViewController: UIImagePickerControllerDelegate, UINav
 
 extension CreateEventTableViewController: NetworkRequestProtocol {
   func prepareForNetworkRequest() {
-    setControls(isEnabled: false)
+    DispatchQueue.main.async {
+      self.showLoadingIndicator(withText: "Creating...")
+      self.setControls(isEnabled: false)
+    }
   }
   
   func updateAfterNetworkRequest() {
-    setControls(isEnabled: false)
+    DispatchQueue.main.async {
+      self.hideLoadingIndicator()
+      self.setControls(isEnabled: false)
+    }
   }
   
   func setControls(isEnabled enabled: Bool) {
-    DispatchQueue.main.async {
-      self.tableView.isUserInteractionEnabled = enabled
-      self.navigationItem.leftBarButtonItem?.isEnabled = enabled
-      self.navigationItem.rightBarButtonItem?.isEnabled = enabled
-    }
+    tableView.isUserInteractionEnabled = enabled
+    navigationItem.leftBarButtonItem?.isEnabled = enabled
+    navigationItem.rightBarButtonItem?.isEnabled = enabled
   }
 }
