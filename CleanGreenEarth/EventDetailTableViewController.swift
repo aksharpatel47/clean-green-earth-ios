@@ -51,10 +51,20 @@ class EventDetailTableViewController: UITableViewController {
   
   func setupViews() {
     eventTitleLabel.text = cgeEvent.title
-    eventDescriptionLabel.text = cgeEvent.description
+    eventDescriptionLabel.text = cgeEvent.descriptionText
     eventLocationLabel.text = cgeEvent.address!.components(separatedBy: ", ").first!
     eventDateLabel.text = (cgeEvent.date as! Date).stringWithLongDateShortTime()
     eventDurationLabel.text = cgeEvent.duration == 1 ? "1 Hour" : "\(cgeEvent.duration) Hours"
+    if let imageData = cgeEvent.imageData as? Data {
+      eventImageView.image = UIImage(data: imageData)
+    } else {
+      cgeEvent.downloadEventImage() {
+        data in
+        DispatchQueue.main.async {
+          self.eventImageView.image = UIImage(data: data)
+        }
+      }
+    }
     
     tableView.tableFooterView = UIView()
     

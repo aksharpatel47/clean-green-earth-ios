@@ -61,7 +61,7 @@ class EventsListTableViewController: CoreDataTableViewController {
       if let imageData = event.imageData {
         cell.eventImageView.image = UIImage(data: imageData as Data)
       } else {
-        event.downloadEventImage()
+        event.downloadEventImage(completionHandler: nil)
       }
     }
     

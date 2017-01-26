@@ -65,7 +65,7 @@ extension CGEEvent {
     }
   }
   
-  func downloadEventImage() {
+  func downloadEventImage(completionHandler: ((_ data: Data) -> Void)?) {
     
     guard let imageURLPath = self.image,
       let url = URL(string: imageURLPath) else {
@@ -81,6 +81,7 @@ extension CGEEvent {
       
       DispatchQueue.main.async {
         self.imageData = data as NSData
+        completionHandler?(data)
       }
     }
   }
