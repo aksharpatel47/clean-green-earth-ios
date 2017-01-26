@@ -26,7 +26,7 @@ class ProfileTableViewController: UITableViewController {
     super.viewDidLoad()
     
     userNameLabel.text = FIRAuth.auth()?.currentUser?.displayName
-    emailLabel.text = FIRAuth.auth()?.currentUser?.email
+    emailLabel.text = FIRAuth.auth()?.currentUser?.email ?? "No Email Address"
   }
   
   override func viewWillAppear(_ animated: Bool) {
