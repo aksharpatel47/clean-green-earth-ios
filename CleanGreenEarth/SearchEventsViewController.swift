@@ -7,25 +7,25 @@
 //
 
 import UIKit
-import MapKit
+import GoogleMaps
 
 class SearchEventsViewController: UIViewController {
   
   // MARK: Properties
-  
-  var locationPin: MKAnnotation!
-  var locationManager = CLLocationManager()
+  var mapView: GMSMapView!
   
   // MARK: Outlets
-  
-  @IBOutlet weak var mapView: MKMapView!
   
   // MARK: Lifecycle Methods
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    showUserLocation()
-    locationManager.delegate = self
+    
+    setupViews()
+  }
+  
+  deinit {
+    mapView.removeObserver(self, forKeyPath: "myLocation")
   }
   
   // MARK: Actions
@@ -38,20 +38,29 @@ class SearchEventsViewController: UIViewController {
     
   }
   
-  // MARK: Functions
+  // MARK: Helper Methods
   
-  func showUserLocation() {
-    if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
-      locationManager.startUpdatingLocation()
-      mapView.showsUserLocation = true
-    } else {
-      locationManager.requestWhenInUseAuthorization()
-    }
+  func setupViews() {
+    mapView = GMSMapView()
+    mapView.isMyLocationEnabled = true
+    
+    view = mapView
+    
+    mapView.addObserver(self, forKeyPath: "myLocation", options: .new, context: nil)
   }
-}
-
-extension SearchEventsViewController: CLLocationManagerDelegate {
-  func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-    print(locations.count)
+  
+  override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    
+    mapView.removeObserver(self, forKeyPath: "myLocation")
+    
+    guard let myLocation = change?[.newKey] as? CLLocation else {
+      return
+    }
+    
+    let camera = GMSCameraPosition.camera(withTarget: myLocation.coordinate, zoom: 11.0)
+    
+    DispatchQueue.main.async {
+      self.mapView.animate(to: camera)
+    }
   }
 }

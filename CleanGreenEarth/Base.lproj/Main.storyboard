@@ -439,22 +439,7 @@
                     <view key="view" contentMode="scaleToFill" id="Yxn-v2-zOd">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="u8W-X3-OsU">
-                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
-                                <gestureRecognizers/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="oaO-L9-IXo" appends="YES" id="5VV-ho-jVw"/>
-                                </connections>
-                            </mapView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="u8W-X3-OsU" firstAttribute="leading" secondItem="Yxn-v2-zOd" secondAttribute="leading" id="ZMY-pu-WS1"/>
-                            <constraint firstAttribute="trailing" secondItem="u8W-X3-OsU" secondAttribute="trailing" id="hKA-1D-XXI"/>
-                            <constraint firstItem="jfA-am-dnx" firstAttribute="top" secondItem="u8W-X3-OsU" secondAttribute="bottom" id="qhS-V4-1Gs"/>
-                            <constraint firstItem="u8W-X3-OsU" firstAttribute="top" secondItem="hYr-o5-Jmd" secondAttribute="bottom" id="xuN-oo-nq5"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Select Location" id="1OV-N5-ZsT">
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="eZY-bb-FN7">
@@ -463,9 +448,6 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <outlet property="mapView" destination="u8W-X3-OsU" id="K7k-Q8-0wA"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EA7-7r-gae" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="oaO-L9-IXo">
