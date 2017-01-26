@@ -9,9 +9,15 @@
 import Foundation
 import CoreLocation
 import CoreData
+import MapKit
 
-extension CGEEvent {
-  var coordinate: CLLocationCoordinate2D {
+extension CGEEvent: MKAnnotation {
+  
+  public var subtitle: String? {
+    return locationName
+  }
+  
+  public var coordinate: CLLocationCoordinate2D {
     return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
   }
   var locationName: String {

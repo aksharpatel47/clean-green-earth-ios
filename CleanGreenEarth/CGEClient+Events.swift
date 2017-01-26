@@ -60,13 +60,17 @@ extension CGEClient {
           return
       }
       
-      let context = CGEDataStack.shared.backgroundObjectContext
-      
-      for event in events {
-        let _ = CGEEvent(dictionary: event, context: context)
+      DispatchQueue.main.async {
+        let context = CGEDataStack.shared.temporaryObjectContext
+        
+        var cgeEvents = [CGEEvent]()
+        
+        for event in events {
+          cgeEvents.append(CGEEvent(dictionary: event, context: context))
+        }
+        
+        completionHandler(cgeEvents, nil)
       }
-      
-      try? context.save()
     }
   }
 }

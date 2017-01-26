@@ -19,6 +19,7 @@ class CGEDataStack {
   var persistenceObjectContext: NSManagedObjectContext
   var managedObjectContext: NSManagedObjectContext
   var backgroundObjectContext: NSManagedObjectContext
+  var temporaryObjectContext: NSManagedObjectContext
   
   init() {
     guard let url = Bundle.main.url(forResource: "CGEDataModel", withExtension: "momd") else {
@@ -35,9 +36,14 @@ class CGEDataStack {
     
     persistenceObjectContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
     persistenceObjectContext.persistentStoreCoordinator = persistentStoreCoordinator
+    persistenceObjectContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
     
     managedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
     managedObjectContext.parent = persistenceObjectContext
+    managedObjectContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+    
+    temporaryObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+    temporaryObjectContext.parent = persistenceObjectContext
     
     backgroundObjectContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
     backgroundObjectContext.parent = managedObjectContext

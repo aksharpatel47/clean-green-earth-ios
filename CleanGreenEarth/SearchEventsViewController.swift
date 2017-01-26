@@ -7,16 +7,18 @@
 //
 
 import UIKit
-import GoogleMaps
+import MapKit
 import GooglePlaces
+import CoreData
+
+fileprivate let eventPin = "eventPin"
 
 class SearchEventsViewController: UIViewController {
   
   // MARK: Properties
-  var mapView: GMSMapView!
-  var marker: GMSMarker?
   
   // MARK: Outlets
+  @IBOutlet weak var mapView: MKMapView!
   
   // MARK: Lifecycle Methods
   
@@ -24,10 +26,6 @@ class SearchEventsViewController: UIViewController {
     super.viewDidLoad()
     
     setupViews()
-  }
-  
-  deinit {
-    mapView.removeObserver(self, forKeyPath: "myLocation")
   }
   
   // MARK: Actions
@@ -65,62 +63,35 @@ class SearchEventsViewController: UIViewController {
   // MARK: Helper Methods
   
   func setupViews() {
-    mapView = GMSMapView()
     mapView.delegate = self
-    mapView.isMyLocationEnabled = true
-    
-    view = mapView
-    
-    mapView.addObserver(self, forKeyPath: "myLocation", options: .new, context: nil)
-  }
-  
-  override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-    
-    mapView.removeObserver(self, forKeyPath: "myLocation")
-    
-    guard let myLocation = change?[.newKey] as? CLLocation else {
-      return
-    }
-    
-    let camera = GMSCameraPosition.camera(withTarget: myLocation.coordinate, zoom: 11.0)
-    
-    DispatchQueue.main.async {
-      self.mapView.animate(to: camera)
-    }
   }
   
   func showEventsAround(coordinate: CLLocationCoordinate2D) {
     
-    let coordinateCamera = GMSCameraPosition.camera(withTarget: coordinate, zoom: 11.0)
+    let camera = MKMapCamera(lookingAtCenter: coordinate, fromEyeCoordinate: coordinate, eyeAltitude: 50000)
+    
+    DispatchQueue.main.async {
+      self.mapView.setCamera(camera, animated: true)
+    }
     
     CGEClient.shared.getEventsAround(coordinate: coordinate) {
       events, error in
       
       guard let events = events, events.count > 0, error == nil else {
-        DispatchQueue.main.async {
-          self.mapView.animate(to: coordinateCamera)
-        }
-        // TODO: Handle Error
         return
       }
       
       DispatchQueue.main.async {
-        self.mapView.clear()
-        
-        var bounds = GMSCoordinateBounds()
+        self.mapView.removeAnnotations(self.mapView.annotations)
         
         for event in events {
-          bounds = bounds.includingCoordinate(event.coordinate)
-          let marker = GMSMarker(position: event.coordinate)
-          marker.title = "\(event.title) @ \(event.locationName)"
-          marker.snippet = event.locationAddress
-          marker.map = self.mapView
-          marker.userData = event
+          self.mapView.addAnnotation(event)
         }
         
-        let camera = self.mapView.camera (for: bounds, insets: UIEdgeInsets(top: 32, left: 32, bottom: 32, right: 32))
-        
-        self.mapView.animate(to: camera!)
+        if let first = self.mapView.overlays.first {
+          let rect = self.mapView.overlays.reduce(first.boundingMapRect, { MKMapRectUnion($0, $1.boundingMapRect) })
+          self.mapView.setVisibleMapRect(rect, edgePadding: UIEdgeInsets(top: 32.0, left: 32.0, bottom: 32.0, right: 32.0), animated: true)
+        }
       }
     }
   }
@@ -150,14 +121,31 @@ extension SearchEventsViewController: GMSAutocompleteViewControllerDelegate {
 
 // MARK: - MapView Delegate
 
-extension SearchEventsViewController: GMSMapViewDelegate {
-  func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
-    guard let eventData = marker.userData as? CGEEvent else {
+//MARK: - MKMapView Delegate
+extension SearchEventsViewController: MKMapViewDelegate {
+  func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+    let pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: eventPin)
+    pinView.canShowCallout = true
+    pinView.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+    pinView.animatesDrop = true
+    return pinView
+  }
+  
+  func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+    guard let annotation = view.annotation as? CGEEvent else {
       return
     }
     
+    let keys = Array(annotation.entity.attributesByName.keys)
+    let object = annotation.dictionaryWithValues(forKeys: keys)
+    let context = CGEDataStack.shared.managedObjectContext
+    
     DispatchQueue.main.async {
-      self.performSegue(withIdentifier: Constants.Segues.showEventDetail, sender: eventData)
+      let entityDescription = NSEntityDescription.entity(forEntityName: "CGEEvent", in: context)
+      let newEvent = CGEEvent(entity: entityDescription!, insertInto: context)
+      newEvent.setValuesForKeys(object)
+      self.performSegue(withIdentifier: Constants.Segues.showEventDetail, sender: newEvent)
     }
   }
 }
+
