@@ -29,6 +29,7 @@ extension CGEClient {
   
   struct Paths {
     static let users = "/users"
+    static let userEvents = "/users/events"
     static let userSpecific = "/users/{id}"
     static let userSpecificEvents = "/users/{id}/events"
     static let userSpecificAttendance = "/users/{id}/attendance"

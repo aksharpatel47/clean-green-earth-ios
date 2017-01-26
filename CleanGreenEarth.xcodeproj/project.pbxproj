@@ -31,6 +31,7 @@
 		D4C4ECEB1E39116B005D61F1 /* CreateEventTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C4ECEA1E39116B005D61F1 /* CreateEventTableViewController.swift */; };
 		D4C4ECED1E39AC6C005D61F1 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C4ECEC1E39AC6C005D61F1 /* Date+Extensions.swift */; };
 		D4C4ECEF1E39AFAF005D61F1 /* CGEEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C4ECEE1E39AFAF005D61F1 /* CGEEvent.swift */; };
+		D4C4ECF31E39C875005D61F1 /* EventsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C4ECF21E39C875005D61F1 /* EventsListTableViewController.swift */; };
 		D4D19C9F1DE2369300707A2C /* UpdateNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D19C9E1DE2369300707A2C /* UpdateNameViewController.swift */; };
 		D4D19CA31DE247A600707A2C /* CGEClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D19CA21DE247A600707A2C /* CGEClient.swift */; };
 		D4D19CA51DE247F600707A2C /* CGEClient+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D19CA41DE247F600707A2C /* CGEClient+Constants.swift */; };
@@ -70,6 +71,7 @@
 		D4C4ECEA1E39116B005D61F1 /* CreateEventTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventTableViewController.swift; sourceTree = "<group>"; };
 		D4C4ECEC1E39AC6C005D61F1 /* Date+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		D4C4ECEE1E39AFAF005D61F1 /* CGEEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGEEvent.swift; sourceTree = "<group>"; };
+		D4C4ECF21E39C875005D61F1 /* EventsListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsListTableViewController.swift; sourceTree = "<group>"; };
 		D4D19C9E1DE2369300707A2C /* UpdateNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateNameViewController.swift; sourceTree = "<group>"; };
 		D4D19CA21DE247A600707A2C /* CGEClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGEClient.swift; sourceTree = "<group>"; };
 		D4D19CA41DE247F600707A2C /* CGEClient+Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGEClient+Constants.swift"; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				D4C4ECEA1E39116B005D61F1 /* CreateEventTableViewController.swift */,
+				D4C4ECF21E39C875005D61F1 /* EventsListTableViewController.swift */,
 			);
 			name = Events;
 			sourceTree = "<group>";
@@ -370,6 +373,7 @@
 				D41538CA1E11563000F047E3 /* NetworkRequestProtocol.swift in Sources */,
 				655A507A1E362F8000D873B7 /* CreateUserTableViewController.swift in Sources */,
 				D4D19C9F1DE2369300707A2C /* UpdateNameViewController.swift in Sources */,
+				D4C4ECF31E39C875005D61F1 /* EventsListTableViewController.swift in Sources */,
 				D4FC443E1E113C5200E182CE /* BasicAlert.swift in Sources */,
 				D4D19CA71DE2486600707A2C /* CGEClient+Helpers.swift in Sources */,
 				D43D1CCA1DE22D65008F292E /* Constants.swift in Sources */,

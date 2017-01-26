@@ -16,6 +16,13 @@ extension Date {
     return formatter.string(from: self)
   }
   
+  func stringWithFormat(forDate dateStyle: DateFormatter.Style, forTime timeStyle: DateFormatter.Style) -> String {
+    let formatter = DateFormatter()
+    formatter.dateStyle = dateStyle
+    formatter.timeStyle = timeStyle
+    return formatter.string(from: self)
+  }
+  
   /**
    * The following methods have been taken from the popular answer of this stack overflow thread:
    * http://stackoverflow.com/questions/28016578/swift-how-to-create-a-date-time-stamp-and-format-as-iso-8601-rfc-3339-utc-tim

@@ -36,7 +36,7 @@ class CGEEvent {
       let latitude = dictionary[Keys.latitude] as? Double,
       let longitude = dictionary[Keys.longitude] as? Double,
       let address = dictionary[Keys.address] as? String,
-      let _ = dictionary[Keys.date] as? String,
+      let dateString = dictionary[Keys.date] as? String,
       let duration = dictionary[Keys.duration] as? Int else {
         fatalError("Error while initializng CGEEvent with \(dictionary)")
     }
@@ -47,8 +47,7 @@ class CGEEvent {
     self.latitude = latitude
     self.longitude = longitude
     self.address = address
-    // TODO: Convert dateString to Date
-    self.date = Date()
+    self.date = dateString.dateFromISO8601!
     self.duration = duration
   }
 }

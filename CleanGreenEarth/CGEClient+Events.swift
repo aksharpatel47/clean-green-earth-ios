@@ -19,6 +19,30 @@ extension CGEClient {
       request(method: .POST, path: Paths.events, queryString: nil, jsonBody: eventDetails, completionHandler: completionHandler)
     }
   }
+  
+  func getEvents(completionHandler: @escaping ([CGEEvent]?, Error?) -> Void) {
+    request(method: .GET, path: Paths.userEvents, queryString: nil, jsonBody: nil) {
+      response, error in
+      
+      print(response)
+      
+      guard let response = response as? [String:Any],
+        let data = response["data"] as? [String:Any],
+        let events = data["events"] as? [[String:Any]] else {
+          completionHandler(nil, error)
+          return
+      }
+      
+      var cgeEvents = [CGEEvent]()
+      
+      for event in events {
+        let cgeEvent = CGEEvent(dictionary: event)
+        cgeEvents.append(cgeEvent)
+      }
+      
+      completionHandler(cgeEvents, nil)
+    }
+  }
 //
 //  func updateEvent(event: Event, completionHandler: @escaping (Any?, Error?) -> Void) {
 //    
