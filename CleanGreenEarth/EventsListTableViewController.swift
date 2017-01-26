@@ -67,6 +67,27 @@ class EventsListTableViewController: UITableViewController {
   }
   
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    print(cgeEvents[indexPath.row])
+    let event = cgeEvents[indexPath.row]
+    
+    DispatchQueue.main.async {
+      self.performSegue(withIdentifier: Constants.Segues.showEventDetail, sender: event)
+    }
+  }
+  
+  // MARK: Navigation Methods
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    guard let identifier = segue.identifier else {
+      return
+    }
+    
+    if identifier == Constants.Segues.showEventDetail {
+      guard let detailViewController = segue.destination as? EventDetailTableViewController,
+        let event = sender as? CGEEvent else {
+          return
+      }
+      
+      detailViewController.cgeEvent = event
+    }
   }
 }

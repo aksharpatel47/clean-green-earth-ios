@@ -15,6 +15,7 @@ struct Constants {
     static let successfulSignup = "successfulSignup"
     static let createUserOnServer = "createUserOnServer"
     static let updateName = "updateName"
+    static let showEventDetail = "showEventDetail"
   }
   
   struct Storyboards {
