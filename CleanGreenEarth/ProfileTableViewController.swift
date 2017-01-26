@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FBSDKLoginKit
 
 class ProfileTableViewController: UITableViewController {
   
@@ -71,6 +72,10 @@ class ProfileTableViewController: UITableViewController {
   
   func logOutUser() {
     do {
+      if let provider = FIRAuth.auth()?.currentUser?.providerData.first?.providerID, provider == "facebook.com" {
+        FBSDKLoginManager().logOut()
+      }
+      
       try FIRAuth.auth()?.signOut()
       UserDefaults.standard.set(false, forKey: Constants.OfflineKeys.successfulSignIn)
       appDelegate.window?.rootViewController = storyboard?.instantiateInitialViewController()
