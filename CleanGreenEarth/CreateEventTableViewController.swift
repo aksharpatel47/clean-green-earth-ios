@@ -277,7 +277,7 @@ extension CreateEventTableViewController: NetworkRequestProtocol {
   func updateAfterNetworkRequest() {
     DispatchQueue.main.async {
       self.hideLoadingIndicator()
-      self.setControls(isEnabled: false)
+      self.setControls(isEnabled: true)
     }
   }
   
