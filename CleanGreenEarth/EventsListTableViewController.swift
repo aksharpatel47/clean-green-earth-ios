@@ -8,55 +8,61 @@
 
 import UIKit
 import Foundation
+import CoreData
+import FirebaseAuth
 
 class EventsListCell: UITableViewCell {
-  @IBOutlet weak var titleLabel: UILabel!
+  @IBOutlet weak var eventTitleLabel: UILabel!
   @IBOutlet weak var eventImageView: UIImageView!
-  @IBOutlet weak var eventAddress: UILabel!
-  @IBOutlet weak var dateLabel: UILabel!
+  @IBOutlet weak var eventAddressLabel: UILabel!
+  @IBOutlet weak var eventDateLabel: UILabel!
 }
 
 fileprivate let reuseIdentifier = "eventCell"
 
-class EventsListTableViewController: UITableViewController {
-  
-  var cgeEvents = [CGEEvent]()
-  
+class EventsListTableViewController: CoreDataTableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
     tableView.tableFooterView = UIView()
+    
+    let context = CGEDataStack.shared.managedObjectContext
+    let userFR = NSFetchRequest<CGEUser>(entityName: "CGEUser")
+    userFR.predicate = NSPredicate(format: "id == %@", FIRAuth.auth()!.currentUser!.uid)
+    let currentUser = (try! context.fetch(userFR)).first!
+    
+    let fr = NSFetchRequest<NSFetchRequestResult>(entityName: "CGEEvent")
+    fr.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
+    fr.predicate = NSPredicate(format: "owner == %@", currentUser)
+    
+    self.fetchedResultsController = NSFetchedResultsController(fetchRequest: fr, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     
     CGEClient.shared.getEvents() {
-      events, error in
+      error in
       
-      guard let events = events, error == nil else {
+      guard error == nil else {
         return
-      }
-      
-      self.cgeEvents = events
-      
-      DispatchQueue.main.async {
-        self.tableView.reloadData()
       }
     }
   }
   
-  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return cgeEvents.count
-  }
-  
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! EventsListCell
-    let event = cgeEvents[indexPath.row]
+    let event = fetchedResultsController?.object(at: indexPath) as! CGEEvent
+    
     DispatchQueue.main.async {
-      cell.titleLabel.text = event.title
-      cell.dateLabel.text = event.date.stringWithFormat(forDate: .medium, forTime: .short)
-      cell.eventAddress.text = event.address.components(separatedBy: ", ").first!
+      cell.eventTitleLabel.text = event.title
+      cell.eventDateLabel.text = (event.date as! Date).stringWithFormat(forDate: .medium, forTime: .short)
+      cell.eventAddressLabel.text = event.address!.components(separatedBy: ", ").first!
+      if let imageData = event.imageData {
+        cell.eventImageView.image = UIImage(data: imageData as Data)
+      } else {
+        event.downloadEventImage()
+      }
     }
     
     return cell
@@ -67,7 +73,7 @@ class EventsListTableViewController: UITableViewController {
   }
   
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let event = cgeEvents[indexPath.row]
+    let event = fetchedResultsController?.object(at: indexPath) as! CGEEvent
     
     DispatchQueue.main.async {
       self.performSegue(withIdentifier: Constants.Segues.showEventDetail, sender: event)

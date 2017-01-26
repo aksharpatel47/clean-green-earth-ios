@@ -102,7 +102,7 @@ class CreateUserTableViewController: UITableViewController {
       }
       
       DispatchQueue.main.async {
-        UserDefaults.standard.set(true, forKey: Constants.OfflineKeys.successfulSignIn)
+        CGEClient.shared.saveLoggedInUserAsCurrent()
         self.performSegue(withIdentifier: Constants.Segues.successfulSignup, sender: nil)
       }
     }

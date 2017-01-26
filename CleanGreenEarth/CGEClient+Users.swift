@@ -62,4 +62,14 @@ extension CGEClient {
       }
     }
   }
+  
+  func saveLoggedInUserAsCurrent() {
+    let context = CGEDataStack.shared.managedObjectContext
+    
+    if let currentFirebaseUser = FIRAuth.auth()?.currentUser {
+      UserDefaults.standard.set(true, forKey: Constants.OfflineKeys.successfulSignIn)
+      let _ = CGEUser(id: currentFirebaseUser.uid, name: currentFirebaseUser.displayName!, image: nil, email: currentFirebaseUser.email, context: context)
+      try? context.save()
+    }
+  }
 }

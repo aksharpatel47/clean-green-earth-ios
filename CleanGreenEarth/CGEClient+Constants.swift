@@ -10,7 +10,7 @@ import Foundation
 
 extension CGEClient {
   struct CGEConstants {
-    static let host = "localhost"
+    static let host = "192.168.1.102"
     static let port = 8080
   }
   

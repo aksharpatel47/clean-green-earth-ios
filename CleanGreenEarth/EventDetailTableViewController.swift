@@ -52,8 +52,8 @@ class EventDetailTableViewController: UITableViewController {
   func setupViews() {
     eventTitleLabel.text = cgeEvent.title
     eventDescriptionLabel.text = cgeEvent.description
-    eventLocationLabel.text = cgeEvent.address.components(separatedBy: ", ").first!
-    eventDateLabel.text = cgeEvent.date.stringWithLongDateShortTime()
+    eventLocationLabel.text = cgeEvent.address!.components(separatedBy: ", ").first!
+    eventDateLabel.text = (cgeEvent.date as! Date).stringWithLongDateShortTime()
     eventDurationLabel.text = cgeEvent.duration == 1 ? "1 Hour" : "\(cgeEvent.duration) Hours"
     
     tableView.tableFooterView = UIView()

@@ -8,6 +8,8 @@
 
 import Foundation
 import MapKit
+import CoreData
+import FirebaseAuth
 
 extension CGEClient {
   func createEvent(eventDetails: [String:Any], eventImage: UIImage?, completionHandler: @escaping (Any?, Error?) -> Void) {
@@ -20,25 +22,28 @@ extension CGEClient {
     }
   }
   
-  func getEvents(completionHandler: @escaping ([CGEEvent]?, Error?) -> Void) {
+  func getEvents(completionHandler: @escaping (Error?) -> Void) {
     request(method: .GET, path: Paths.userEvents, queryString: nil, jsonBody: nil) {
       response, error in
       
       guard let response = response as? [String:Any],
         let data = response[CGEClient.ResponseKeys.data] as? [String:Any],
         let events = data[CGEClient.ResponseKeys.events] as? [[String:Any]] else {
-          completionHandler(nil, error)
+          completionHandler(error)
           return
       }
-      
-      var cgeEvents = [CGEEvent]()
-      
-      for event in events {
-        let cgeEvent = CGEEvent(dictionary: event)
-        cgeEvents.append(cgeEvent)
+            
+      CGEDataStack.shared.performBackgroundBatchOperation() {
+        context in
+        let userFR = NSFetchRequest<CGEUser>(entityName: "CGEUser")
+        userFR.predicate = NSPredicate(format: "id == %@", FIRAuth.auth()!.currentUser!.uid)
+        let currentUser = (try! context.fetch(userFR)).first!
+        
+        for event in events {
+          let event = CGEEvent(dictionary: event, context: context)
+          event.owner = currentUser
+        }
       }
-      
-      completionHandler(cgeEvents, nil)
     }
   }
   
@@ -55,25 +60,13 @@ extension CGEClient {
           return
       }
       
-      var cgeEvents = [CGEEvent]()
+      let context = CGEDataStack.shared.backgroundObjectContext
       
       for event in events {
-        cgeEvents.append(CGEEvent(dictionary: event))
+        let _ = CGEEvent(dictionary: event, context: context)
       }
       
-      completionHandler(cgeEvents, nil)
+      try? context.save()
     }
   }
-
-//  func updateEvent(event: Event, completionHandler: @escaping (Any?, Error?) -> Void) {
-//    
-//  }
-//  
-//  func deleteEvent(eventId: Event, completionHandler: @escaping (Any?, Error?) -> Void) {
-//    
-//  }
-//  
-//  func searchForEvents(around coordinate: CLLocationCoordinate2D, completionHandler: @escaping ([Event]?, Error?) -> Void) {
-//    
-//  }
 }

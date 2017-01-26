@@ -30,7 +30,7 @@
 		D4C4ECE71E390F9D005D61F1 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C4ECE61E390F9D005D61F1 /* UIViewController+Extensions.swift */; };
 		D4C4ECEB1E39116B005D61F1 /* CreateEventTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C4ECEA1E39116B005D61F1 /* CreateEventTableViewController.swift */; };
 		D4C4ECED1E39AC6C005D61F1 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C4ECEC1E39AC6C005D61F1 /* Date+Extensions.swift */; };
-		D4C4ECEF1E39AFAF005D61F1 /* CGEEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C4ECEE1E39AFAF005D61F1 /* CGEEvent.swift */; };
+		D4C4ECEF1E39AFAF005D61F1 /* CGEEvent+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C4ECEE1E39AFAF005D61F1 /* CGEEvent+Extension.swift */; };
 		D4C4ECF31E39C875005D61F1 /* EventsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C4ECF21E39C875005D61F1 /* EventsListTableViewController.swift */; };
 		D4C4ECF51E39E283005D61F1 /* EventDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C4ECF41E39E283005D61F1 /* EventDetailTableViewController.swift */; };
 		D4D19C9F1DE2369300707A2C /* UpdateNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D19C9E1DE2369300707A2C /* UpdateNameViewController.swift */; };
@@ -38,6 +38,10 @@
 		D4D19CA51DE247F600707A2C /* CGEClient+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D19CA41DE247F600707A2C /* CGEClient+Constants.swift */; };
 		D4D19CA71DE2486600707A2C /* CGEClient+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D19CA61DE2486600707A2C /* CGEClient+Helpers.swift */; };
 		D4D19CA91DE24D3200707A2C /* CGEClient+Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D19CA81DE24D3200707A2C /* CGEClient+Authentication.swift */; };
+		D4E4F8FB1E3A0D8600A11914 /* CGEDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D4E4F8F91E3A0D8600A11914 /* CGEDataModel.xcdatamodeld */; };
+		D4E4F8FD1E3A11E800A11914 /* CGEUser+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E4F8FC1E3A11E800A11914 /* CGEUser+Extension.swift */; };
+		D4E4F8FF1E3A130100A11914 /* CGEDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E4F8FE1E3A130100A11914 /* CGEDataStack.swift */; };
+		D4E4F9011E3A24E300A11914 /* CoreDataTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E4F9001E3A24E300A11914 /* CoreDataTableViewController.swift */; };
 		D4E974DB1DDFE754002DCA7B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E974DA1DDFE754002DCA7B /* AppDelegate.swift */; };
 		D4E974DD1DDFE754002DCA7B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E974DC1DDFE754002DCA7B /* LoginViewController.swift */; };
 		D4E974E01DDFE754002DCA7B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4E974DE1DDFE754002DCA7B /* Main.storyboard */; };
@@ -71,7 +75,7 @@
 		D4C4ECE61E390F9D005D61F1 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		D4C4ECEA1E39116B005D61F1 /* CreateEventTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventTableViewController.swift; sourceTree = "<group>"; };
 		D4C4ECEC1E39AC6C005D61F1 /* Date+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
-		D4C4ECEE1E39AFAF005D61F1 /* CGEEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGEEvent.swift; sourceTree = "<group>"; };
+		D4C4ECEE1E39AFAF005D61F1 /* CGEEvent+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGEEvent+Extension.swift"; sourceTree = "<group>"; };
 		D4C4ECF21E39C875005D61F1 /* EventsListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsListTableViewController.swift; sourceTree = "<group>"; };
 		D4C4ECF41E39E283005D61F1 /* EventDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetailTableViewController.swift; sourceTree = "<group>"; };
 		D4D19C9E1DE2369300707A2C /* UpdateNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateNameViewController.swift; sourceTree = "<group>"; };
@@ -79,6 +83,10 @@
 		D4D19CA41DE247F600707A2C /* CGEClient+Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGEClient+Constants.swift"; sourceTree = "<group>"; };
 		D4D19CA61DE2486600707A2C /* CGEClient+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGEClient+Helpers.swift"; sourceTree = "<group>"; };
 		D4D19CA81DE24D3200707A2C /* CGEClient+Authentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGEClient+Authentication.swift"; sourceTree = "<group>"; };
+		D4E4F8FA1E3A0D8600A11914 /* CGEDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CGEDataModel.xcdatamodel; sourceTree = "<group>"; };
+		D4E4F8FC1E3A11E800A11914 /* CGEUser+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGEUser+Extension.swift"; sourceTree = "<group>"; };
+		D4E4F8FE1E3A130100A11914 /* CGEDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGEDataStack.swift; sourceTree = "<group>"; };
+		D4E4F9001E3A24E300A11914 /* CoreDataTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataTableViewController.swift; sourceTree = "<group>"; };
 		D4E974D71DDFE754002DCA7B /* CleanGreenEarth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CleanGreenEarth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4E974DA1DDFE754002DCA7B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4E974DC1DDFE754002DCA7B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -124,6 +132,7 @@
 		D41538CB1E1158D500F047E3 /* CustomComponents */ = {
 			isa = PBXGroup;
 			children = (
+				D4E4F9001E3A24E300A11914 /* CoreDataTableViewController.swift */,
 				D41538CC1E1158FC00F047E3 /* RoundedLabel.swift */,
 				65F8B80C1E126B14009F8A93 /* RoundedButton.swift */,
 			);
@@ -154,6 +163,7 @@
 		D4D19CA01DE2478900707A2C /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D4E4F8F81E3A0D6C00A11914 /* CGEDataStack */,
 				D4D19CA11DE2479500707A2C /* CGEClient */,
 			);
 			name = Models;
@@ -171,9 +181,19 @@
 				65513D791DE86282003C79DE /* CGEClient+Attendance.swift */,
 				653747D31E37717C0091ECCE /* CGEFile.swift */,
 				653747D51E3772950091ECCE /* CGEMimeTypes.swift */,
-				D4C4ECEE1E39AFAF005D61F1 /* CGEEvent.swift */,
 			);
 			name = CGEClient;
+			sourceTree = "<group>";
+		};
+		D4E4F8F81E3A0D6C00A11914 /* CGEDataStack */ = {
+			isa = PBXGroup;
+			children = (
+				D4C4ECEE1E39AFAF005D61F1 /* CGEEvent+Extension.swift */,
+				D4E4F8FC1E3A11E800A11914 /* CGEUser+Extension.swift */,
+				D4E4F8F91E3A0D8600A11914 /* CGEDataModel.xcdatamodeld */,
+				D4E4F8FE1E3A130100A11914 /* CGEDataStack.swift */,
+			);
+			name = CGEDataStack;
 			sourceTree = "<group>";
 		};
 		D4E974CE1DDFE754002DCA7B = {
@@ -367,13 +387,14 @@
 				D4C4ECE71E390F9D005D61F1 /* UIViewController+Extensions.swift in Sources */,
 				D4C4ECED1E39AC6C005D61F1 /* Date+Extensions.swift in Sources */,
 				65B493971DE57B7800317ACB /* SearchEventsViewController.swift in Sources */,
-				D4C4ECEF1E39AFAF005D61F1 /* CGEEvent.swift in Sources */,
+				D4C4ECEF1E39AFAF005D61F1 /* CGEEvent+Extension.swift in Sources */,
 				D4E974DD1DDFE754002DCA7B /* LoginViewController.swift in Sources */,
 				D4E974DB1DDFE754002DCA7B /* AppDelegate.swift in Sources */,
 				653747D61E3772950091ECCE /* CGEMimeTypes.swift in Sources */,
 				65513D7A1DE86282003C79DE /* CGEClient+Attendance.swift in Sources */,
 				D4D19CA91DE24D3200707A2C /* CGEClient+Authentication.swift in Sources */,
 				D41538CA1E11563000F047E3 /* NetworkRequestProtocol.swift in Sources */,
+				D4E4F8FF1E3A130100A11914 /* CGEDataStack.swift in Sources */,
 				655A507A1E362F8000D873B7 /* CreateUserTableViewController.swift in Sources */,
 				D4D19C9F1DE2369300707A2C /* UpdateNameViewController.swift in Sources */,
 				D4C4ECF51E39E283005D61F1 /* EventDetailTableViewController.swift in Sources */,
@@ -382,15 +403,18 @@
 				D4D19CA71DE2486600707A2C /* CGEClient+Helpers.swift in Sources */,
 				D43D1CCA1DE22D65008F292E /* Constants.swift in Sources */,
 				D41538CD1E1158FC00F047E3 /* RoundedLabel.swift in Sources */,
+				D4E4F8FD1E3A11E800A11914 /* CGEUser+Extension.swift in Sources */,
 				D4C4ECEB1E39116B005D61F1 /* CreateEventTableViewController.swift in Sources */,
 				653747D41E37717C0091ECCE /* CGEFile.swift in Sources */,
 				65513D761DE8626A003C79DE /* CGEClient+Users.swift in Sources */,
+				D4E4F8FB1E3A0D8600A11914 /* CGEDataModel.xcdatamodeld in Sources */,
 				65F8B80D1E126B14009F8A93 /* RoundedButton.swift in Sources */,
 				65A466E61E386F6F00ECE88B /* ImageExtensions.swift in Sources */,
 				656A5BD51DE6AC8A00647BD0 /* ProfileTableViewController.swift in Sources */,
 				D4D19CA51DE247F600707A2C /* CGEClient+Constants.swift in Sources */,
 				650B30571E360D8100DD2D38 /* LoadingIndicator.swift in Sources */,
 				65513D781DE86278003C79DE /* CGEClient+Events.swift in Sources */,
+				D4E4F9011E3A24E300A11914 /* CoreDataTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -563,6 +587,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		D4E4F8F91E3A0D8600A11914 /* CGEDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				D4E4F8FA1E3A0D8600A11914 /* CGEDataModel.xcdatamodel */,
+			);
+			currentVersion = D4E4F8FA1E3A0D8600A11914 /* CGEDataModel.xcdatamodel */;
+			path = CGEDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = D4E974CF1DDFE754002DCA7B /* Project object */;
 }

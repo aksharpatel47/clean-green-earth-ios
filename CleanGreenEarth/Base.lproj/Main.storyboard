@@ -889,7 +889,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="149.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="e9l-jh-3ny">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="e9l-jh-3ny">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="110"/>
                                             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                             <constraints>
@@ -938,9 +938,10 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="dateLabel" destination="vq3-zD-UWz" id="osf-GW-cR5"/>
-                                    <outlet property="eventAddress" destination="eiH-kx-kly" id="kdv-aw-RhK"/>
-                                    <outlet property="titleLabel" destination="XeK-ql-A6S" id="JTB-IQ-Yl3"/>
+                                    <outlet property="eventAddressLabel" destination="eiH-kx-kly" id="eia-RJ-N2k"/>
+                                    <outlet property="eventDateLabel" destination="vq3-zD-UWz" id="q6e-Lf-yFf"/>
+                                    <outlet property="eventImageView" destination="e9l-jh-3ny" id="cvx-uG-pHe"/>
+                                    <outlet property="eventTitleLabel" destination="XeK-ql-A6S" id="YIq-Xd-GOu"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -1410,8 +1411,8 @@
         <image name="profile_icon" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="BEF-Fd-I2x"/>
         <segue reference="VSu-1y-8y9"/>
-        <segue reference="gC5-Kd-QbX"/>
+        <segue reference="BEF-Fd-I2x"/>
+        <segue reference="5MM-7C-2Ej"/>
     </inferredMetricsTieBreakers>
 </document>
