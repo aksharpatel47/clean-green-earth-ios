@@ -453,6 +453,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Select Location" id="1OV-N5-ZsT">
+                        <barButtonItem key="backBarButtonItem" title=" " id="tFD-vu-mxk"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="eZY-bb-FN7">
                             <connections>
                                 <action selector="searchButtonPressed:" destination="5fj-dZ-wsU" id="KAQ-JW-Utl"/>
@@ -1041,37 +1042,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hBL-dJ-GJZ">
-                                                    <rect key="frame" x="16" y="-707" width="288" height="1457.5"/>
+                                                    <rect key="frame" x="16" y="11.5" width="288" height="20.5"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="tCO-wC-sj6">
-                                                            <rect key="frame" x="0.0" y="0.0" width="108" height="1457.5"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Email Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="tCO-wC-sj6">
+                                                            <rect key="frame" x="0.0" y="0.0" width="288" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Unverified" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="guN-Cm-Rfq" customClass="RoundedLabel" customModule="CleanGreenEarth" customModuleProvider="target">
-                                                            <rect key="frame" x="108" y="0.0" width="180" height="1457.5"/>
-                                                            <color key="backgroundColor" red="0.85076935279999999" green="0.2798258716" blue="0.11287098280000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <nil key="highlightedColor"/>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                    <real key="value" value="3"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
-                                                                    <real key="value" value="3"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="rightPadding">
-                                                                    <real key="value" value="3"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="topPadding">
-                                                                    <real key="value" value="2"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="bottomPadding">
-                                                                    <real key="value" value="2"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                            </userDefinedRuntimeAttributes>
                                                         </label>
                                                     </subviews>
                                                 </stackView>
@@ -1141,7 +1118,6 @@
                     <connections>
                         <outlet property="emailLabel" destination="tCO-wC-sj6" id="ygc-vd-ld2"/>
                         <outlet property="userNameLabel" destination="Ov7-yA-euC" id="y1k-JB-W4T"/>
-                        <outlet property="verificationStatusLabel" destination="guN-Cm-Rfq" id="RSE-jG-KvE"/>
                         <segue destination="LXf-dk-nd5" kind="presentation" identifier="changeName" id="FYt-1W-6hE"/>
                     </connections>
                 </tableViewController>
@@ -1332,6 +1308,43 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="70" id="xvW-3I-d5c">
+                                        <rect key="frame" x="0.0" y="475" width="320" height="70"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xvW-3I-d5c" id="QJV-BU-pPt">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RSVP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IZH-Y5-4Hg">
+                                                    <rect key="frame" x="24" y="6" width="32" height="15"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="752" text="Not Attending" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q5J-bO-20b">
+                                                    <rect key="frame" x="24" y="25" width="107" height="40"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="GbC-2w-T33">
+                                                    <rect key="frame" x="247" y="19" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="rsvpChanged:" destination="reW-Cg-EUU" eventType="valueChanged" id="JnW-Zt-Ug9"/>
+                                                    </connections>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Q5J-bO-20b" firstAttribute="top" secondItem="IZH-Y5-4Hg" secondAttribute="bottom" constant="4" id="27M-ZI-F6z"/>
+                                                <constraint firstItem="GbC-2w-T33" firstAttribute="centerY" secondItem="QJV-BU-pPt" secondAttribute="centerY" id="ELL-qn-K27"/>
+                                                <constraint firstItem="IZH-Y5-4Hg" firstAttribute="leading" secondItem="QJV-BU-pPt" secondAttribute="leading" constant="24" id="Jrl-Z0-fdM"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="GbC-2w-T33" secondAttribute="trailing" constant="16" id="MU2-3L-2bb"/>
+                                                <constraint firstItem="IZH-Y5-4Hg" firstAttribute="top" secondItem="QJV-BU-pPt" secondAttribute="top" constant="6" id="VPM-Ob-G0Z"/>
+                                                <constraint firstAttribute="bottom" secondItem="Q5J-bO-20b" secondAttribute="bottom" constant="4" id="qhu-h9-yei"/>
+                                                <constraint firstItem="Q5J-bO-20b" firstAttribute="leading" secondItem="QJV-BU-pPt" secondAttribute="leading" constant="24" id="t6M-1e-KWl"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -1341,11 +1354,13 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="eventAttendanceSwitch" destination="GbC-2w-T33" id="gcQ-G6-anh"/>
                         <outlet property="eventDateLabel" destination="5t0-Oc-sqU" id="jBn-H2-zYa"/>
                         <outlet property="eventDescriptionLabel" destination="9yP-ox-BSc" id="0WL-CS-z8y"/>
                         <outlet property="eventDurationLabel" destination="QKu-fp-5TE" id="KKK-9O-ucW"/>
                         <outlet property="eventImageView" destination="91B-fZ-68A" id="7FW-ef-xGI"/>
                         <outlet property="eventLocationLabel" destination="Wdf-me-4MC" id="Xqk-cL-e8t"/>
+                        <outlet property="eventRSVPLabel" destination="Q5J-bO-20b" id="JP8-P0-Q5R"/>
                         <outlet property="eventTitleLabel" destination="lGz-w1-X7Q" id="uyC-NM-pfl"/>
                     </connections>
                 </tableViewController>

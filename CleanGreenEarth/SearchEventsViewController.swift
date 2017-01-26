@@ -136,15 +136,8 @@ extension SearchEventsViewController: MKMapViewDelegate {
       return
     }
     
-    let keys = Array(annotation.entity.attributesByName.keys)
-    let object = annotation.dictionaryWithValues(forKeys: keys)
-    let context = CGEDataStack.shared.managedObjectContext
-    
     DispatchQueue.main.async {
-      let entityDescription = NSEntityDescription.entity(forEntityName: "CGEEvent", in: context)
-      let newEvent = CGEEvent(entity: entityDescription!, insertInto: context)
-      newEvent.setValuesForKeys(object)
-      self.performSegue(withIdentifier: Constants.Segues.showEventDetail, sender: newEvent)
+      self.performSegue(withIdentifier: Constants.Segues.showEventDetail, sender: annotation)
     }
   }
 }

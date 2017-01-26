@@ -91,4 +91,16 @@ extension CGEEvent: MKAnnotation {
       }
     }
   }
+  
+  static func deleteEvent(withId id: String) {
+    let context = CGEDataStack.shared.managedObjectContext
+    let fr = NSFetchRequest<CGEEvent>(entityName: "CGEEvent")
+    fr.predicate = NSPredicate(format: "id == %@", id)
+    
+    guard let event = (try? context.fetch(fr))?.first else {
+      return
+    }
+    
+    context.delete(event)
+  }
 }

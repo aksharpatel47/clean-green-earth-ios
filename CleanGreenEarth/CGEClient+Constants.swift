@@ -43,5 +43,7 @@ extension CGEClient {
     static let data = "data"
     static let error = "error"
     static let events = "events"
+    static let createdEvents = "created"
+    static let attendingEvents = "attending"
   }
 }

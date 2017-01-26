@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import FirebaseAuth
 
 extension CGEUser {
   struct Keys {
@@ -54,5 +55,22 @@ extension CGEUser {
       
       self.imageData = try? Data(contentsOf: url) as NSData
     }
+  }
+  
+  static func getUser(withId id: String?) -> CGEUser? {
+    
+    guard let user = id ?? FIRAuth.auth()?.currentUser?.uid else {
+      return nil
+    }
+    
+    let context = CGEDataStack.shared.managedObjectContext
+    let fr = NSFetchRequest<CGEUser>(entityName: "CGEUser")
+    fr.predicate = NSPredicate(format: "id == %@", user)
+    
+    guard let currentUser = (try? context.fetch(fr))?.first else {
+      return nil
+    }
+    
+    return currentUser
   }
 }

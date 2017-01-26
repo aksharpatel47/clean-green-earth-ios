@@ -33,7 +33,7 @@ class EventsListTableViewController: CoreDataTableViewController {
     
     let fr = NSFetchRequest<NSFetchRequestResult>(entityName: "CGEEvent")
     fr.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
-    fr.predicate = NSPredicate(format: "owner == %@", currentUser)
+    fr.predicate = NSPredicate(format: "owner == %@ OR attendees contains %@", currentUser, currentUser)
     
     self.fetchedResultsController = NSFetchedResultsController(fetchRequest: fr, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
   }

@@ -28,20 +28,28 @@ extension CGEClient {
       
       guard let response = response as? [String:Any],
         let data = response[CGEClient.ResponseKeys.data] as? [String:Any],
-        let events = data[CGEClient.ResponseKeys.events] as? [[String:Any]] else {
+        let createdEvents = data[CGEClient.ResponseKeys.createdEvents] as? [[String:Any]],
+        let attendingEvents = data[CGEClient.ResponseKeys.attendingEvents] as? [[String:Any]] else {
           completionHandler(error)
           return
       }
-            
+      
       CGEDataStack.shared.performBackgroundBatchOperation() {
         context in
         let userFR = NSFetchRequest<CGEUser>(entityName: "CGEUser")
         userFR.predicate = NSPredicate(format: "id == %@", FIRAuth.auth()!.currentUser!.uid)
         let currentUser = (try! context.fetch(userFR)).first!
         
-        for event in events {
-          let event = CGEEvent(dictionary: event, context: context)
+        for createdEvent in createdEvents {
+          let event = CGEEvent(dictionary: createdEvent, context: context)
           event.owner = currentUser
+        }
+        
+        for attEvent in attendingEvents {
+          let event = CGEEvent(dictionary: attEvent, context: context)
+          var attendingEvents = (currentUser.attending as! Set<CGEEvent>)
+          attendingEvents.insert(event)
+          currentUser.attending = attendingEvents as NSSet?
         }
       }
     }

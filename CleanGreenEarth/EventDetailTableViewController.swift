@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
 class EventDetailTableViewController: UITableViewController {
   
@@ -22,6 +23,8 @@ class EventDetailTableViewController: UITableViewController {
   @IBOutlet weak var eventLocationLabel: UILabel!
   @IBOutlet weak var eventDateLabel: UILabel!
   @IBOutlet weak var eventDurationLabel: UILabel!
+  @IBOutlet weak var eventAttendanceSwitch: UISwitch!
+  @IBOutlet weak var eventRSVPLabel: UILabel!
   
   // MARK: Lifecycle Methods
   
@@ -29,12 +32,66 @@ class EventDetailTableViewController: UITableViewController {
     super.viewDidLoad()
     
     setupViews()
+    
+    if let user = CGEUser.getUser(withId: nil) {
+      if let ownEvents = user.createdEvents as? Set<CGEEvent> {
+        if ownEvents.map({ $0.id }).contains(where: { $0 == cgeEvent.id! }) {
+          eventAttendanceSwitch.setOn(true, animated: true)
+          eventAttendanceSwitch.isEnabled = false
+          eventRSVPLabel.text = "Attending"
+        }
+      }
+      
+      if let attendingEvents = user.attending as? Set<CGEEvent> {
+        if attendingEvents.map({ $0.id }).contains(where: { $0 == cgeEvent.id }) {
+          eventAttendanceSwitch.setOn(true, animated: true)
+          eventRSVPLabel.text = "Attending"
+        }
+      }
+    }
   }
   
   // MARK: Actions
   
-  func editPressed(_ sender: AnyObject) {
+  @IBAction func rsvpChanged(_ sender: UISwitch) {
+    let previousState = !sender.isOn
     
+    if sender.isOn {
+      CGEClient.shared.attendEvent(withId: cgeEvent.id!) {
+        data, error in
+        
+        guard error == nil else {
+          
+          DispatchQueue.main.async {
+            self.eventAttendanceSwitch.setOn(previousState, animated: true)
+          }
+          
+          return
+        }
+        
+        DispatchQueue.main.async {
+          self.eventRSVPLabel.text = "Attending"
+        }
+      }
+    } else {
+      CGEClient.shared.removeAttendanceFromEvent(withId: cgeEvent.id!) {
+        data, error in
+        
+        guard error == nil else {
+          
+          DispatchQueue.main.async {
+            self.eventAttendanceSwitch.setOn(previousState, animated: true)
+          }
+          
+          return
+        }
+        
+        DispatchQueue.main.async {
+          CGEEvent.deleteEvent(withId: self.cgeEvent.id!)
+          self.eventRSVPLabel.text = "Not Attending"
+        }
+      }
+    }
   }
   
   // MARK: TableView Datasource Methods
