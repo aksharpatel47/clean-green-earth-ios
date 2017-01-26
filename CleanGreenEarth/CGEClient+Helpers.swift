@@ -27,7 +27,7 @@ extension CGEClient {
     return urlComponents.url
   }
   
-  func createUploadRequest(method: HTTPMethods, path: String, files: [CGEFile], mpData: [String:String]?, completionHandler: @escaping (URLRequest?, Error?) -> Void) {
+  func createUploadRequest(method: HTTPMethods, path: String, files: [CGEFile], mpData: [String:Any]?, completionHandler: @escaping (URLRequest?, Error?) -> Void) {
     guard let url = constructURL(path: path, queryString: nil) else {
       let userInfo = [NSLocalizedDescriptionKey: "Error while constructing url for \(path)"]
       completionHandler(nil, NSError(domain: NSURLErrorDomain, code: NSURLErrorBadURL, userInfo: userInfo))

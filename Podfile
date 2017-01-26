@@ -15,4 +15,5 @@ target 'CleanGreenEarth' do
   pod 'FBSDKShareKit', '4.18.0'
   pod 'GoogleMaps', '2.1.1'
   pod 'GooglePlaces', '2.1.1'
+  pod 'DatePickerDialog', '1.1.7'
 end

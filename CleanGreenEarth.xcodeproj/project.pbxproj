@@ -27,6 +27,10 @@
 		D496262F1DDFE83800113527 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D496262E1DDFE83800113527 /* .gitignore */; };
 		D49626311DE214E000113527 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D49626301DE214E000113527 /* GoogleService-Info.plist */; };
 		D49626341DE215D200113527 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = D49626331DE215D200113527 /* Podfile */; };
+		D4C4ECE71E390F9D005D61F1 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C4ECE61E390F9D005D61F1 /* UIViewController+Extensions.swift */; };
+		D4C4ECEB1E39116B005D61F1 /* CreateEventTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C4ECEA1E39116B005D61F1 /* CreateEventTableViewController.swift */; };
+		D4C4ECED1E39AC6C005D61F1 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C4ECEC1E39AC6C005D61F1 /* Date+Extensions.swift */; };
+		D4C4ECEF1E39AFAF005D61F1 /* CGEEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C4ECEE1E39AFAF005D61F1 /* CGEEvent.swift */; };
 		D4D19C9F1DE2369300707A2C /* UpdateNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D19C9E1DE2369300707A2C /* UpdateNameViewController.swift */; };
 		D4D19CA31DE247A600707A2C /* CGEClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D19CA21DE247A600707A2C /* CGEClient.swift */; };
 		D4D19CA51DE247F600707A2C /* CGEClient+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D19CA41DE247F600707A2C /* CGEClient+Constants.swift */; };
@@ -62,6 +66,10 @@
 		D496262E1DDFE83800113527 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		D49626301DE214E000113527 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D49626331DE215D200113527 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		D4C4ECE61E390F9D005D61F1 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
+		D4C4ECEA1E39116B005D61F1 /* CreateEventTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventTableViewController.swift; sourceTree = "<group>"; };
+		D4C4ECEC1E39AC6C005D61F1 /* Date+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
+		D4C4ECEE1E39AFAF005D61F1 /* CGEEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGEEvent.swift; sourceTree = "<group>"; };
 		D4D19C9E1DE2369300707A2C /* UpdateNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateNameViewController.swift; sourceTree = "<group>"; };
 		D4D19CA21DE247A600707A2C /* CGEClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGEClient.swift; sourceTree = "<group>"; };
 		D4D19CA41DE247F600707A2C /* CGEClient+Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGEClient+Constants.swift"; sourceTree = "<group>"; };
@@ -118,6 +126,24 @@
 			name = CustomComponents;
 			sourceTree = "<group>";
 		};
+		D4C4ECE81E39113D005D61F1 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				D4E974DC1DDFE754002DCA7B /* LoginViewController.swift */,
+				655A50791E362F8000D873B7 /* CreateUserTableViewController.swift */,
+				D43D1CC71DE22B72008F292E /* SignupViewController.swift */,
+			);
+			name = Authentication;
+			sourceTree = "<group>";
+		};
+		D4C4ECE91E391150005D61F1 /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				D4C4ECEA1E39116B005D61F1 /* CreateEventTableViewController.swift */,
+			);
+			name = Events;
+			sourceTree = "<group>";
+		};
 		D4D19CA01DE2478900707A2C /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -138,6 +164,7 @@
 				65513D791DE86282003C79DE /* CGEClient+Attendance.swift */,
 				653747D31E37717C0091ECCE /* CGEFile.swift */,
 				653747D51E3772950091ECCE /* CGEMimeTypes.swift */,
+				D4C4ECEE1E39AFAF005D61F1 /* CGEEvent.swift */,
 			);
 			name = CGEClient;
 			sourceTree = "<group>";
@@ -168,13 +195,12 @@
 			children = (
 				D41538CB1E1158D500F047E3 /* CustomComponents */,
 				D4FC443C1E113C4300E182CE /* Utilities */,
+				D4C4ECE81E39113D005D61F1 /* Authentication */,
+				D4C4ECE91E391150005D61F1 /* Events */,
 				D4E974DA1DDFE754002DCA7B /* AppDelegate.swift */,
-				D4E974DC1DDFE754002DCA7B /* LoginViewController.swift */,
 				D4D19C9E1DE2369300707A2C /* UpdateNameViewController.swift */,
 				65B493961DE57B7800317ACB /* SearchEventsViewController.swift */,
-				655A50791E362F8000D873B7 /* CreateUserTableViewController.swift */,
 				D4E974DE1DDFE754002DCA7B /* Main.storyboard */,
-				D43D1CC71DE22B72008F292E /* SignupViewController.swift */,
 				D4E974E11DDFE754002DCA7B /* Assets.xcassets */,
 				D4E974E31DDFE754002DCA7B /* LaunchScreen.storyboard */,
 				D4E974E61DDFE754002DCA7B /* Info.plist */,
@@ -192,6 +218,8 @@
 				D41538C91E11563000F047E3 /* NetworkRequestProtocol.swift */,
 				650B30561E360D8100DD2D38 /* LoadingIndicator.swift */,
 				65A466E51E386F6F00ECE88B /* ImageExtensions.swift */,
+				D4C4ECE61E390F9D005D61F1 /* UIViewController+Extensions.swift */,
+				D4C4ECEC1E39AC6C005D61F1 /* Date+Extensions.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -330,7 +358,10 @@
 			files = (
 				D4D19CA31DE247A600707A2C /* CGEClient.swift in Sources */,
 				D43D1CC81DE22B72008F292E /* SignupViewController.swift in Sources */,
+				D4C4ECE71E390F9D005D61F1 /* UIViewController+Extensions.swift in Sources */,
+				D4C4ECED1E39AC6C005D61F1 /* Date+Extensions.swift in Sources */,
 				65B493971DE57B7800317ACB /* SearchEventsViewController.swift in Sources */,
+				D4C4ECEF1E39AFAF005D61F1 /* CGEEvent.swift in Sources */,
 				D4E974DD1DDFE754002DCA7B /* LoginViewController.swift in Sources */,
 				D4E974DB1DDFE754002DCA7B /* AppDelegate.swift in Sources */,
 				653747D61E3772950091ECCE /* CGEMimeTypes.swift in Sources */,
@@ -343,6 +374,7 @@
 				D4D19CA71DE2486600707A2C /* CGEClient+Helpers.swift in Sources */,
 				D43D1CCA1DE22D65008F292E /* Constants.swift in Sources */,
 				D41538CD1E1158FC00F047E3 /* RoundedLabel.swift in Sources */,
+				D4C4ECEB1E39116B005D61F1 /* CreateEventTableViewController.swift in Sources */,
 				653747D41E37717C0091ECCE /* CGEFile.swift in Sources */,
 				65513D761DE8626A003C79DE /* CGEClient+Users.swift in Sources */,
 				65F8B80D1E126B14009F8A93 /* RoundedButton.swift in Sources */,

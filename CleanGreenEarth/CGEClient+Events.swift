@@ -10,10 +10,16 @@ import Foundation
 import MapKit
 
 extension CGEClient {
-//  func createEvent(event: Event, completionHandler: @escaping (Any?, Error?) -> Void) {
-//    
-//  }
-//  
+  func createEvent(eventDetails: [String:Any], eventImage: UIImage?, completionHandler: @escaping (Any?, Error?) -> Void) {
+    
+    if let image = eventImage, let imageData = UIImageJPEGRepresentation(image, 1.0) {
+      let file = CGEFile(name: "event-image", data: imageData, mimeType: .jpegImage)
+      uploadRequest(method: .POST, path: Paths.events, files: [file], data: eventDetails, completionHandler: completionHandler)
+    } else {
+      request(method: .POST, path: Paths.events, queryString: nil, jsonBody: eventDetails, completionHandler: completionHandler)
+    }
+  }
+//
 //  func updateEvent(event: Event, completionHandler: @escaping (Any?, Error?) -> Void) {
 //    
 //  }

@@ -42,7 +42,7 @@ final class CGEClient {
     }
   }
   
-  func uploadRequest(method: HTTPMethods, path: String, files: [CGEFile], data: [String:String]?, completionHandler: @escaping ((Any?, Error?) -> Void)) {
+  func uploadRequest(method: HTTPMethods, path: String, files: [CGEFile], data: [String:Any]?, completionHandler: @escaping ((Any?, Error?) -> Void)) {
     createUploadRequest(method: method, path: path, files: files, mpData: data) {
       request, error in
       
