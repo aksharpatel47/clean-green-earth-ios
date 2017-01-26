@@ -19,7 +19,6 @@ class ProfileTableViewController: UITableViewController {
   
   @IBOutlet weak var userNameLabel: UILabel!
   @IBOutlet weak var emailLabel: UILabel!
-  @IBOutlet weak var verificationStatusLabel: UILabel!
   
   // MARK: Lifecycle Methods
   
@@ -31,21 +30,7 @@ class ProfileTableViewController: UITableViewController {
   }
   
   override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
-    
-    if let emailVerificationStatus = FIRAuth.auth()?.currentUser?.isEmailVerified {
-      self.verificationStatusLabel.text = emailVerificationStatus ? "Verified" : "Unverified"
-      self.verificationStatusLabel.backgroundColor = emailVerificationStatus ? UIColor.darkGray : UIColor.red
-    }
-    
-    FIRAuth.auth()?.currentUser?.reload() {
-      completion in
-      
-      if let emailVerificationStatus = FIRAuth.auth()?.currentUser?.isEmailVerified {
-        self.verificationStatusLabel.text = emailVerificationStatus ? "Verified" : "Unverified"
-        self.verificationStatusLabel.backgroundColor = emailVerificationStatus ? UIColor.darkGray : UIColor.red
-      }
-    }
+    super.viewWillAppear(animated)    
   }
   
   // MARK: Delegate Methods
@@ -54,11 +39,7 @@ class ProfileTableViewController: UITableViewController {
     tableView.deselectRow(at: indexPath, animated: true)
     
     switch (indexPath.section, indexPath.row) {
-    case (1, 0):
-      sendVerificationEmail()
     case (2, 0):
-      printUserToken()
-    case (2, 1):
       logOutUser()
     default:
       break
@@ -82,33 +63,5 @@ class ProfileTableViewController: UITableViewController {
     } catch {
       print("Error while signing the user out. \(error)")
     }
-  }
-  
-  func sendVerificationEmail() {
-    if let emailVerificationStatus = FIRAuth.auth()?.currentUser?.isEmailVerified,
-      emailVerificationStatus == false {
-      FIRAuth.auth()?.currentUser?.sendEmailVerification() {
-        error in
-        
-        guard error == nil else {
-          return
-        }
-        
-        print("Verification Email Sent.")
-      }
-    }
-  }
-  
-  func printUserToken() {
-    FIRAuth.auth()?.currentUser?.getTokenWithCompletion({
-      token, error in
-      
-      guard let token = token, error == nil else {
-        print("Error while getting the token")
-        return
-      }
-      
-      print(token)
-    })
   }
 }
