@@ -70,6 +70,7 @@ extension CGEClient {
       UserDefaults.standard.set(true, forKey: Constants.OfflineKeys.successfulSignIn)
       let _ = CGEUser(id: currentFirebaseUser.uid, name: currentFirebaseUser.displayName!, image: nil, email: currentFirebaseUser.email, context: context)
       try? context.save()
+      CGEDataStack.shared.saveChanges()
     }
   }
 }
