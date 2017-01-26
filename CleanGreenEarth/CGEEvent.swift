@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 class CGEEvent {
   var id: String?
@@ -17,6 +18,15 @@ class CGEEvent {
   var address: String
   var date: Date
   var duration: Int
+  var coordinate: CLLocationCoordinate2D {
+    return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+  }
+  var locationName: String {
+    return address.components(separatedBy: ", ").first!
+  }
+  var locationAddress: String {
+    return address.components(separatedBy: ", ").dropFirst().joined(separator: ", ")
+  }
   
   struct Keys {
     static let id = "id"

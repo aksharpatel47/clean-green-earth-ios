@@ -38,4 +38,10 @@ extension CGEClient {
     static let eventSpecific = "/events/{id}"
     static let eventSpecificAttendance = "/events/{id}/attendance"
   }
+  
+  struct ResponseKeys {
+    static let data = "data"
+    static let error = "error"
+    static let events = "events"
+  }
 }

@@ -24,11 +24,9 @@ extension CGEClient {
     request(method: .GET, path: Paths.userEvents, queryString: nil, jsonBody: nil) {
       response, error in
       
-      print(response)
-      
       guard let response = response as? [String:Any],
-        let data = response["data"] as? [String:Any],
-        let events = data["events"] as? [[String:Any]] else {
+        let data = response[CGEClient.ResponseKeys.data] as? [String:Any],
+        let events = data[CGEClient.ResponseKeys.events] as? [[String:Any]] else {
           completionHandler(nil, error)
           return
       }
@@ -43,7 +41,30 @@ extension CGEClient {
       completionHandler(cgeEvents, nil)
     }
   }
-//
+  
+  func getEventsAround(coordinate: CLLocationCoordinate2D, completionHandler: @escaping([CGEEvent]?, Error?) -> Void) {
+    let queryItems = ["latitude": coordinate.latitude, "longitude": coordinate.longitude]
+    request(method: .GET, path: Paths.events, queryString: queryItems, jsonBody: nil) {
+      response, error in
+      
+      guard let response = response as? [String:Any],
+        let data = response[CGEClient.ResponseKeys.data] as? [String:Any],
+        let events = data[CGEClient.ResponseKeys.events] as? [[String:Any]] else {
+          // TODO: Handle Error
+          completionHandler(nil, error)
+          return
+      }
+      
+      var cgeEvents = [CGEEvent]()
+      
+      for event in events {
+        cgeEvents.append(CGEEvent(dictionary: event))
+      }
+      
+      completionHandler(cgeEvents, nil)
+    }
+  }
+
 //  func updateEvent(event: Event, completionHandler: @escaping (Any?, Error?) -> Void) {
 //    
 //  }
