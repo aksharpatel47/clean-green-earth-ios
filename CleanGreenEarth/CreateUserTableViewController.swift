@@ -13,6 +13,7 @@ class CreateUserTableViewController: UITableViewController {
   
   @IBOutlet weak var userImageView: UIImageView!
   @IBOutlet weak var userDisplayNameTextField: UITextField!
+  @IBOutlet weak var saveButton: UIBarButtonItem!
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -136,21 +137,22 @@ extension CreateUserTableViewController: NetworkRequestProtocol {
   func prepareForNetworkRequest() {
     DispatchQueue.main.async {
       self.showLoadingIndicator(withText: "Updating...")
-      self.setElements(isEnabled: false)
+      self.setControls(isEnabled: false)
     }
   }
   
   func updateAfterNetworkRequest() {
     DispatchQueue.main.async {
       self.hideLoadingIndicator()
-      self.setElements(isEnabled: true)
+      self.setControls(isEnabled: true)
     }
   }
   
-  func setElements(isEnabled enabled: Bool) {
+  func setControls(isEnabled enabled: Bool) {
     let imageCellIndexPath = IndexPath(item: 0, section: 0)
     let imageCell = tableView.cellForRow(at: imageCellIndexPath)
     imageCell?.isUserInteractionEnabled = enabled
     self.userDisplayNameTextField.isEnabled = enabled
+    self.saveButton.isEnabled = enabled
   }
 }

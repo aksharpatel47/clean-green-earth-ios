@@ -33,6 +33,8 @@ class EventDetailTableViewController: UITableViewController {
     
     setupViews()
     
+    CGEDataStack.shared.saveChanges()
+    
     if let user = CGEUser.getUser(withId: nil) {
       if let ownEvents = user.createdEvents as? Set<CGEEvent> {
         if ownEvents.map({ $0.id }).contains(where: { $0 == cgeEvent.id! }) {
@@ -66,6 +68,8 @@ class EventDetailTableViewController: UITableViewController {
             self.eventAttendanceSwitch.setOn(previousState, animated: true)
           }
           
+          self.handleNetworkError(error: error)
+          
           return
         }
         
@@ -82,6 +86,8 @@ class EventDetailTableViewController: UITableViewController {
           DispatchQueue.main.async {
             self.eventAttendanceSwitch.setOn(previousState, animated: true)
           }
+          
+          self.handleNetworkError(error: error)
           
           return
         }
@@ -127,5 +133,33 @@ class EventDetailTableViewController: UITableViewController {
     
     tableView.estimatedRowHeight = 70
     tableView.rowHeight = UITableViewAutomaticDimension
+  }
+  
+  func handleNetworkError(error: Error?) {
+    guard let error = error as? NSError else {
+      return
+    }
+    
+    if let alert = createAlertController(forError: error) {
+      DispatchQueue.main.async {
+        self.present(alert, animated: true, completion: nil)
+      }
+    }
+  }
+}
+
+// MARK: - Network Request Protocol
+
+extension EventDetailTableViewController: NetworkRequestProtocol {
+  func prepareForNetworkRequest() {
+    DispatchQueue.main.async {
+      self.showLoadingIndicator(withText: "Updating...")
+    }
+  }
+  
+  func updateAfterNetworkRequest() {
+    DispatchQueue.main.async {
+      self.hideLoadingIndicator()
+    }
   }
 }

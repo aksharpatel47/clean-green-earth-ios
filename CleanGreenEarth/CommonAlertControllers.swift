@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import FirebaseAuth
 
-func alertController(forError error: NSError) -> UIAlertController? {
+func createAlertController(forError error: NSError) -> UIAlertController? {
   
   var title = ""
   var message = ""
@@ -72,5 +72,6 @@ func alertController(forError error: NSError) -> UIAlertController? {
   
   let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
   let okAction = UIAlertAction(title: buttonTitle, style: .default, handler: nil)
+  alertController.addAction(okAction)
   return alertController
 }

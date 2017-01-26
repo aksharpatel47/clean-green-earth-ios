@@ -52,6 +52,8 @@ extension CGEClient {
           currentUser.attending = attendingEvents as NSSet?
         }
       }
+      
+      completionHandler(nil)
     }
   }
   

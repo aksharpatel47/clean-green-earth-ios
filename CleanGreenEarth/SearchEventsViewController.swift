@@ -30,10 +30,6 @@ class SearchEventsViewController: UIViewController {
   
   // MARK: Actions
   
-  @IBAction func pinLocationToSearch(_ sender: UILongPressGestureRecognizer) {
-    
-  }
-  
   @IBAction func searchButtonPressed(_ sender: AnyObject) {
     let autocompleteController = GMSAutocompleteViewController()
     autocompleteController.delegate = self
@@ -74,10 +70,25 @@ class SearchEventsViewController: UIViewController {
       self.mapView.setCamera(camera, animated: true)
     }
     
+    prepareForNetworkRequest()
+    
     CGEClient.shared.getEventsAround(coordinate: coordinate) {
       events, error in
       
+      self.updateAfterNetworkRequest()
+      
       guard let events = events, events.count > 0, error == nil else {
+        
+        guard let error = error as? NSError else {
+          return
+        }
+        
+        if let alert = createAlertController(forError: error) {
+          DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+          }
+        }
+        
         return
       }
       
@@ -121,7 +132,6 @@ extension SearchEventsViewController: GMSAutocompleteViewControllerDelegate {
 
 // MARK: - MapView Delegate
 
-//MARK: - MKMapView Delegate
 extension SearchEventsViewController: MKMapViewDelegate {
   func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
     let pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: eventPin)
@@ -138,6 +148,22 @@ extension SearchEventsViewController: MKMapViewDelegate {
     
     DispatchQueue.main.async {
       self.performSegue(withIdentifier: Constants.Segues.showEventDetail, sender: annotation)
+    }
+  }
+}
+
+// MARK: - Network Request Protocol
+
+extension SearchEventsViewController: NetworkRequestProtocol {
+  func prepareForNetworkRequest() {
+    DispatchQueue.main.async {
+      self.showLoadingIndicator(withText: "Getting Nearby Events...")
+    }
+  }
+  
+  func updateAfterNetworkRequest() {
+    DispatchQueue.main.async {
+      self.hideLoadingIndicator()
     }
   }
 }

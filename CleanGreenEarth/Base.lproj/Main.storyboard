@@ -191,10 +191,13 @@
                             <outlet property="delegate" destination="wMV-zT-GWv" id="5Ml-5i-JWa"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Welcome!" id="f3T-Pu-tfp"/>
+                    <navigationItem key="navigationItem" title="Welcome!" id="f3T-Pu-tfp">
+                        <barButtonItem key="backBarButtonItem" title=" " id="jtZ-w7-Klf"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="emailTextField" destination="DaV-92-zhV" id="hhL-GK-5oT"/>
                         <outlet property="facebookLoginButton" destination="dmM-Gu-Rwo" id="vdm-nA-vTH"/>
+                        <outlet property="loginButton" destination="9V3-5y-kB4" id="lkp-KD-qmm"/>
                         <outlet property="passwordTextField" destination="47o-U1-Art" id="etT-mz-g4T"/>
                         <segue destination="Ooa-xZ-Ho0" kind="showDetail" identifier="signupIncomplete" id="0ap-oz-nZR"/>
                         <segue destination="ywS-Z8-als" kind="showDetail" identifier="successfulLogin" id="1df-3e-Exu"/>
@@ -345,6 +348,7 @@
                     <connections>
                         <outlet property="emailTextField" destination="Z7l-el-bNd" id="QL7-2V-ceu"/>
                         <outlet property="passwordTextField" destination="M8f-At-woj" id="FRd-n5-ogT"/>
+                        <outlet property="signupButton" destination="Hgq-Jv-gX4" id="kcp-ac-oQy"/>
                         <segue destination="Ooa-xZ-Ho0" kind="showDetail" identifier="createUserOnServer" id="VSu-1y-8y9"/>
                     </connections>
                 </tableViewController>
@@ -466,11 +470,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EA7-7r-gae" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="oaO-L9-IXo">
-                    <connections>
-                        <action selector="pinLocationToSearch:" destination="5fj-dZ-wsU" id="bpp-9h-LTD"/>
-                    </connections>
-                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="4087.5" y="-1010.9154929577464"/>
         </scene>
@@ -787,6 +786,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="saveButton" destination="gKq-qf-chl" id="Klw-1h-AnB"/>
                         <outlet property="userDisplayNameTextField" destination="Cxv-8B-npk" id="2OX-Rq-600"/>
                         <outlet property="userImageView" destination="Owf-1s-vvE" id="k4H-e0-deC"/>
                         <segue destination="ywS-Z8-als" kind="showDetail" identifier="successfulSignup" id="BEF-Fd-I2x"/>
@@ -964,6 +964,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Events" id="I6Q-Fm-dGv">
+                        <barButtonItem key="backBarButtonItem" title=" " id="WuI-cc-DrC"/>
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="add" id="Tai-Zl-Kxo">
                             <connections>
                                 <segue destination="zxi-wQ-ev7" kind="showDetail" identifier="addEvent" id="nwW-au-IPg"/>
@@ -1108,7 +1109,7 @@
         <scene sceneID="M2U-rS-bcG">
             <objects>
                 <tableViewController title="Event Detail" id="reW-Cg-EUU" customClass="EventDetailTableViewController" customModule="CleanGreenEarth" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="qIY-rd-Vf0">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="qIY-rd-Vf0">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1198,11 +1199,11 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="70" id="sRO-qO-v1R">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="70" id="sRO-qO-v1R">
                                         <rect key="frame" x="0.0" y="265" width="320" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sRO-qO-v1R" id="7o8-4G-21L">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="69"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LOCATION" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hhj-86-Cs7">
@@ -1212,7 +1213,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="752" text="Location of the Event" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.75" translatesAutoresizingMaskIntoConstraints="NO" id="Wdf-me-4MC">
-                                                    <rect key="frame" x="24" y="25" width="255" height="40"/>
+                                                    <rect key="frame" x="24" y="25" width="288" height="40"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1417,8 +1418,8 @@
         <image name="profile_icon" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="1df-3e-Exu"/>
+        <segue reference="5MM-7C-2Ej"/>
         <segue reference="VSu-1y-8y9"/>
-        <segue reference="BEF-Fd-I2x"/>
-        <segue reference="gC5-Kd-QbX"/>
     </inferredMetricsTieBreakers>
 </document>

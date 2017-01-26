@@ -17,6 +17,7 @@ class LoginViewController: UITableViewController {
   @IBOutlet weak var emailTextField: UITextField!
   @IBOutlet weak var passwordTextField: UITextField!
   @IBOutlet weak var facebookLoginButton: FBSDKLoginButton!
+  @IBOutlet weak var loginButton: RoundedButton!
   
   // MARK: Lifecycle Methods
   
@@ -32,20 +33,39 @@ class LoginViewController: UITableViewController {
   
   func prepareForNetworkRequest() {
     self.showLoadingIndicator(withText: "Logging In...")
-    self.setTextFields(isEnabled: false)
+    self.setControls(isEnabled: false)
   }
   
   func updateAfterNetworkRequest() {
     self.hideLoadingIndicator()
-    self.setTextFields(isEnabled: true)
+    self.setControls(isEnabled: true)
   }
   
-  func setTextFields(isEnabled enabled: Bool) {
+  func setControls(isEnabled enabled: Bool) {
+    self.loginButton.isEnabled = enabled
+    self.facebookLoginButton.isEnabled = enabled
     self.emailTextField.isEnabled = enabled
     self.passwordTextField.isEnabled = enabled
   }
   
   // MARK: Actions
+  
+  func handleLoginError(error: Error?) {
+    
+    guard let error = error as? NSError else {
+      return
+    }
+    
+    if error.domain == CGEClient.errorDomain && error.code == CGEClient.ErrorCode.notFound.rawValue {
+      DispatchQueue.main.async {
+        self.performSegue(withIdentifier: Constants.Segues.signupIncomplete, sender: nil)
+      }
+    } else if let alertController = createAlertController(forError: error) {
+      DispatchQueue.main.async {
+        self.present(alertController, animated: true, completion: nil)
+      }
+    }
+  }
   
   @IBAction func login(_ sender: AnyObject) {
     
@@ -71,23 +91,7 @@ class LoginViewController: UITableViewController {
       }
       
       guard error == nil else {
-        
-        guard let error = error as? NSError else {
-          return
-        }
-        
-        switch (error.domain, error.code) {
-        case (CGEClient.errorDomain, CGEClient.ErrorCode.notFound.rawValue):
-          
-          DispatchQueue.main.async {
-            self.performSegue(withIdentifier: Constants.Segues.signupIncomplete, sender: nil)
-          }
-          
-          break
-        default:
-          break
-        }
-        
+        self.handleLoginError(error: error)
         return
       }
       
@@ -117,20 +121,7 @@ extension LoginViewController: FBSDKLoginButtonDelegate {
       }
       
       guard error == nil else {
-        
-        guard let error = error as? NSError else {
-          return
-        }
-        
-        switch (error.domain, error.code) {
-        case (CGEClient.errorDomain, CGEClient.ErrorCode.notFound.rawValue):
-          DispatchQueue.main.async {
-            self.performSegue(withIdentifier: Constants.Segues.signupIncomplete, sender: nil)
-          }
-        default:
-          break
-        }
-        
+        self.handleLoginError(error: error)
         return
       }
       

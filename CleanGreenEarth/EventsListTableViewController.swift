@@ -27,24 +27,46 @@ class EventsListTableViewController: CoreDataTableViewController {
     tableView.tableFooterView = UIView()
     
     let context = CGEDataStack.shared.managedObjectContext
-    let userFR = NSFetchRequest<CGEUser>(entityName: "CGEUser")
-    userFR.predicate = NSPredicate(format: "id == %@", FIRAuth.auth()!.currentUser!.uid)
-    let currentUser = (try! context.fetch(userFR)).first!
     
-    let fr = NSFetchRequest<NSFetchRequestResult>(entityName: "CGEEvent")
-    fr.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
-    fr.predicate = NSPredicate(format: "owner == %@ OR attendees contains %@", currentUser, currentUser)
-    
-    self.fetchedResultsController = NSFetchedResultsController(fetchRequest: fr, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+    if let currentUser = CGEUser.getUser(withId: nil) {
+      let fr = NSFetchRequest<NSFetchRequestResult>(entityName: "CGEEvent")
+      fr.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
+      fr.predicate = NSPredicate(format: "owner == %@ OR attendees contains %@", currentUser, currentUser)
+      
+      self.fetchedResultsController = NSFetchedResultsController(fetchRequest: fr, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+    }
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     
+    if let fc = fetchedResultsController, let count = fc.sections?[0].numberOfObjects, count == 0 {
+      prepareForNetworkRequest()
+    }
+    
     CGEClient.shared.getEvents() {
       error in
       
+      self.updateAfterNetworkRequest()
+      
+      CGEDataStack.shared.saveChanges()
+      
       guard error == nil else {
+        
+        if let fc = self.fetchedResultsController, let count = fc.sections?[0].numberOfObjects, count == 0 {
+          self.updateAfterNetworkRequest()
+          
+          guard let error = error as? NSError else {
+            return
+          }
+          
+          if let alert = createAlertController(forError: error) {
+            DispatchQueue.main.async {
+              self.present(alert, animated: true, completion: nil)
+            }
+          }
+        }
+        
         return
       }
     }
@@ -94,6 +116,20 @@ class EventsListTableViewController: CoreDataTableViewController {
       }
       
       detailViewController.cgeEvent = event
+    }
+  }
+}
+
+extension EventsListTableViewController: NetworkRequestProtocol {
+  func prepareForNetworkRequest() {
+    DispatchQueue.main.async {
+      self.showLoadingIndicator(withText: "Updating Events...")
+    }
+  }
+  
+  func updateAfterNetworkRequest() {
+    DispatchQueue.main.async {
+      self.hideLoadingIndicator()
     }
   }
 }
